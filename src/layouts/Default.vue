@@ -39,6 +39,7 @@ body {
   font-style: normal;
   line-height: 1.5;
   max-width: 100vw;
+  overflow-x: hidden;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -49,8 +50,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
-  padding: 0.7rem;
+  margin-top: 2rem;
 }
 
 .header__title {
