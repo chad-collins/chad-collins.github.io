@@ -36,7 +36,7 @@
           <label for="message">Message</label>
           <textarea name="message" v-model="formData.message"></textarea>
 
-          <button class="submit" type="submit">Submit</button>
+          <button class="button" type="submit">Submit</button>
         </form>
       </div>
     </section>
@@ -104,14 +104,6 @@ input {
 
 label {
   margin-top: 1rem;
-}
-.submit {
-  background-color: $bodyText;
-  color: $background;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .submit:hover {

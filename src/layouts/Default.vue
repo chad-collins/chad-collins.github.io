@@ -68,9 +68,10 @@ body {
 }
 
 .footer {
-  padding-top: calc(30rem / 4);
+  padding-top: calc(30rem / 5);
   text-align: center;
   font-size: 1rem;
+  padding-bottom: 3rem;
 }
 
 @media screen and (min-width: 940px) {

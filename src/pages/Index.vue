@@ -2,7 +2,8 @@
   <Layout headerTitle="Hi, I'm Chad." headerSubtitle="I'm a Full-Stack Developer">
     <section id="about" class="section">
       <div class="container">
-        <p>My name is Chad Collins and I'm a software developer based in Columbus Ohio. I formerly spent several years in the wireless industry with experiences ranging from management, tech support, and customer service. I made the decision to become a software developer because I wanted a career that allowed me to combine my creative and analytical skill sets to solve problems. Programming allows me to collaborate on projects and watch my ideas come to life as I code, and I can’t think of a better way to spend my life.</p>
+        <p>🍨💻🦖</p>
+        <p>My name is Chad Collins and I'm a software developer based in Columbus Ohio. I spent several years in the wireless industry with experiences ranging from management, tech support, and customer service. I made the decision to become a software developer because I wanted a career that allowed me to combine my creative and analytical skill sets to solve problems. Programming allows me to collaborate on projects and watch my ideas come to life as I code, and I can’t think of a better way to spend my life.</p>
       </div>
     </section>
 
@@ -67,6 +68,16 @@
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
         </ul>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2 class="lined-heading">Ready to get in touch?</h2>
+        <div class="container">
+          <g-link to="/contact/">
+            <button class="button">Contact</button>
+          </g-link>
+        </div>
       </div>
     </section>
   </Layout>
