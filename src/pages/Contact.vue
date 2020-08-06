@@ -19,23 +19,22 @@
             </label>
           </p>
 
-          <div class="form__info-wrapper">
-            <label for="name" class="label">Your name</label>
-            <input type="text" name="name" v-model="formData.name" />
-          </div>
-          <div class="form__info-wrapper">
-            <label for="email">Your email</label>
-            <input type="email" name="email" v-model="formData.email" />
-          </div>
-          <div class="form__info-wrapper">
-            <label for="email">Subject</label>
-            <input type="text" name="subject" v-model="formData.subject" />
-          </div>
+          <label for="name">Your name</label>
+          <input type="text" name="name" placeholder="Your name .." v-model="formData.name" />
 
-          <div class="form__message-wrapper">
-            <label for="message">Message</label>
-            <textarea name="message" v-model="formData.message"></textarea>
-          </div>
+          <label for="email">Your email</label>
+          <input type="email" name="email" placeholder="Your email .." v-model="formData.email" />
+
+          <label for="email">Subject</label>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject line .."
+            v-model="formData.subject"
+          />
+
+          <label for="message">Message</label>
+          <textarea name="message" v-model="formData.message"></textarea>
 
           <button class="submit" type="submit">Submit</button>
         </form>
@@ -77,27 +76,34 @@ export default {
 
 <style lang="scss">
 .form {
-  width: 100%;
+  width: 90%;
   max-width: 600px;
   display: flex;
   flex-direction: column;
-}
-.form__info-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
 }
 
 textarea {
   width: 100%;
   height: 200px;
   border: 1px solid $light;
-  border-radius: 4px;
+  padding: 0;
+  margin: 0;
   margin-bottom: 20px;
   resize: vertical;
+  box-sizing: border-box;
 }
 
+input {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: 3.3rem;
+  width: 100%;
+}
+
+label {
+  margin-top: 1rem;
+}
 .submit {
   background-color: $bodyText;
   color: $background;

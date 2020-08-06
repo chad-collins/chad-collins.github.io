@@ -71,7 +71,7 @@ $outer-margin: 1rem;
   font-size: 1.5rem;
   height: 50px;
   justify-content: center;
-  margin-right: 0.5rem;
+  margin-right: 0.8rem;
   width: 50px;
 }
 
