@@ -29,7 +29,7 @@
           </div>
           <div class="form__info-wrapper">
             <label for="email">Subject</label>
-            <input type="text" name="subject" v-model="formData.email" />
+            <input type="text" name="subject" v-model="formData.subject" />
           </div>
 
           <div class="form__message-wrapper">
