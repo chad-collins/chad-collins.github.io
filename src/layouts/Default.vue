@@ -15,7 +15,7 @@
       <div class="footer">
         <p>
           &copy;2020. Built by
-          <a href="//gridsome.org">Chad Collins</a>
+          <a href="http://linkedin.com/in/chadacollins">Chad Collins</a>
         </p>
       </div>
     </main>
