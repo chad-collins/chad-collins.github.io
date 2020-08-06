@@ -56,6 +56,7 @@ body {
 .header__title {
   padding: 0;
   margin: 0;
+  font-size: 2rem;
 }
 
 .header__subtitle {

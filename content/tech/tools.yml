@@ -5,7 +5,7 @@
 
 - id: javascript
   name: 'Javascript'
-  image: vue.png
+  image: javascript.png
   family: frontEnd
 
 - id: css3
@@ -15,20 +15,35 @@
 
 - id: html5
   name: 'HTML 5'
-  image: vue.png
+  image: html5.png
   family: frontEnd
 
+- id: react
+  name: 'React'
+  image: react.png
+  family: frontEnd
+
+- id: photoshop
+  name: 'Photoshop'
+  image: adobe.png
+  family: other
+
+- id: agile
+  name: 'Agile'
+  image: agile.png
+  family: other
+
+- id: java
+  name: 'Java'
+  image: java.png
+  family: backEnd
+
 - id: api
-  name: 'API'
-  image: vue.png
+  name: 'Restful APIs'
+  image: restapi.png
   family: backEnd
 
 - id: node
   name: 'Node'
-  image: vue.png
+  image: node.png
   family: backEnd
-
-- id: react
-  name: 'React'
-  image: vue.png
-  family: frontEnd

@@ -3,6 +3,7 @@
     <section class="section">
       <div class="container">
         <form
+          class="form"
           name="contact"
           method="post"
           v-on:submit.prevent="handleSubmit"
@@ -17,23 +18,26 @@
               <input name="bot-field" />
             </label>
           </p>
-          <div class="sender-info">
-            <div>
-              <label for="name" class="label">Your name</label>
-              <input type="text" name="name" v-model="formData.name" />
-            </div>
-            <div>
-              <label for="email">Your email</label>
-              <input type="email" name="email" v-model="formData.email" />
-            </div>
+
+          <div class="form__info-wrapper">
+            <label for="name" class="label">Your name</label>
+            <input type="text" name="name" v-model="formData.name" />
+          </div>
+          <div class="form__info-wrapper">
+            <label for="email">Your email</label>
+            <input type="email" name="email" v-model="formData.email" />
+          </div>
+          <div class="form__info-wrapper">
+            <label for="email">Subject</label>
+            <input type="text" name="subject" v-model="formData.email" />
           </div>
 
-          <div class="message-wrapper">
+          <div class="form__message-wrapper">
             <label for="message">Message</label>
             <textarea name="message" v-model="formData.message"></textarea>
           </div>
 
-          <button type="submit">Submit form</button>
+          <button class="submit" type="submit">Submit</button>
         </form>
       </div>
     </section>
@@ -72,16 +76,25 @@ export default {
 </script>
 
 <style lang="scss">
-input[type="text"],
-select,
+.form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.form__info-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
 textarea {
   width: 100%;
-  padding: 12px;
+  height: 200px;
   border: 1px solid $light;
   border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   resize: vertical;
 }
 

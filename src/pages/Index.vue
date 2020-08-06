@@ -1,5 +1,5 @@
 <template>
-  <Layout headerTitle="Hi I'm Chad." headerSubtitle="I'm a Full-Stack Developer">
+  <Layout headerTitle="Hi, I'm Chad." headerSubtitle="I'm a Full-Stack Developer">
     <section id="about" class="section">
       <div class="container">
         <p>My name is Chad Collins and I'm a software developer based in Columbus Ohio. I formerly spent several years in the wireless industry with experiences ranging from management, tech support, and customer service. I made the decision to become a software developer because I wanted a career that allowed me to combine my creative and analytical skill sets to solve problems. Programming allows me to collaborate on projects and watch my ideas come to life as I code, and I can’t think of a better way to spend my life.</p>
@@ -88,7 +88,6 @@ query {
         family
       }
     }
-
   }
   backEnd: allTools(filter: { family: { eq: "backEnd" }})  {
     edges {
@@ -99,7 +98,6 @@ query {
         family
       }
     }
-
   }
 }
 </page-query>

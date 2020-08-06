@@ -13,13 +13,30 @@
     <nav v-bind:class="{ show: displayNav }" class="nav">
       <g-link class="nav__link" to="/projects">Projects</g-link>
       <g-link class="nav__link" to="/contact">Contact</g-link>
-      <g-link class="nav__link">Resume</g-link>
+      <a
+        class="nav__link"
+        href="https://drive.google.com/file/d/1mv2VW-LebFrwGf-xwQRNs6ciwp_xE2Ou/view?usp=sharing"
+        target="_blank"
+      >Resume</a>
+      <div class="nav-links-right">
+        <a href="http://github.com/chad-collins">
+          <SvgIcon class="icon" icon="github" height="20" width="20" />
+        </a>
+        <a href="http://linkedin.com/in/chadacollins">
+          <SvgIcon class="icon" icon="linkedin" height="20" width="20" />
+        </a>
+      </div>
     </nav>
   </div>
 </template>
 
 <script>
+import SvgIcon from "@/components/SvgIcon";
+
 export default {
+  components: {
+    SvgIcon,
+  },
   data() {
     return {
       displayNav: false,
@@ -113,6 +130,19 @@ $outer-margin: 1rem;
   transform: rotate(45deg) translate(-8px, -8px);
 }
 
+.nav-links-right {
+  background-color: white;
+  border-bottom: 1px solid $light;
+  padding: 1rem;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.icon:last-child {
+  margin-left: 25px;
+}
 .show {
   max-height: 300px;
 }
@@ -136,6 +166,12 @@ $outer-margin: 1rem;
 
   .burger {
     display: none;
+  }
+  .nav-links-right {
+    position: absolute;
+    top: 20px;
+    right: $outer-margin;
+    border: none;
   }
 }
 </style>
