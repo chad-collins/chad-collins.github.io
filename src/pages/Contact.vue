@@ -2,7 +2,7 @@
   <Layout headerTitle="Contact Me" headerSubtitle="Let's get in touch">
     <section class="section">
       <div class="container">
-        <form class="form" method="POST" data-netlify="true">
+        <form class="form" method="POST" action="/success" data-netlify="true">
           <label for="fname">Your Name</label>
           <input type="text" id="name" name="name" placeholder="Your name.." />
 
@@ -12,7 +12,7 @@
           <label for="subject">Subject</label>
           <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
 
-          <input class="submit" type="submit" />
+          <button class="submit" type="submit">Submit</button>
         </form>
       </div>
     </section>
