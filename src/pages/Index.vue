@@ -41,6 +41,7 @@
         <ul class="tools">
           <li class="tools__item" v-for="tool in $page.frontEnd.edges" :key="tool.id">
             <g-image
+              v-if="tool.node.image"
               class="tools__image"
               :src="require(`!!assets-loader?width=50!@images/${tool.node.image}`)"
             />
@@ -57,6 +58,7 @@
         <ul class="tools">
           <li class="tools__item" v-for="tool in $page.backEnd.edges" :key="tool.id">
             <g-image
+              v-if="tool.node.image"
               class="tools__image"
               :src="require(`!!assets-loader?width=50!@images/${tool.node.image}`)"
             />

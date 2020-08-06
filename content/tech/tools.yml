@@ -3,6 +3,16 @@
   image: vue.png
   family: frontEnd
 
+- id: gridsome
+  name: 'Gridsome'
+  image: gridsome.png
+  family: frontEnd
+
+- id: jamstack
+  name: 'JAMstack'
+  image: jamstack.png
+  family: frontEnd
+
 - id: javascript
   name: 'Javascript'
   image: javascript.png
