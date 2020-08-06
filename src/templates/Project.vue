@@ -1,0 +1,111 @@
+<template>
+  <Layout :headerTitle="$page.project.title" :headerSubtitle="$page.project.subtitle">
+    <section class="section">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li class="breadcrumb__item">
+            <g-link to="/projects">Projects</g-link>
+          </li>
+          <li class="breadcrumb__item">/</li>
+          <li class="breadcrumb__item">
+            <g-link :to="$page.project.path">{{$page.project.title}}</g-link>
+          </li>
+        </ul>
+        <article class="article">
+          <g-image
+            class="article__image"
+            :src="$page.project.featuredImage || `https://via.placeholder.com/800x450?text=No+Image+Available`"
+          />
+          <h2 class="article__heading">Summary</h2>
+          <p v-html="$page.project.content" />
+          <h2 class="article__heading">Skills &#38; Tools</h2>
+          <ul class="tools-list">
+            <li class="tool" v-for="tool in $page.project.tools" :key="tool.id">{{tool.name}}</li>
+          </ul>
+          <h2 v-if="$page.project.deployedLink" class="article__heading">See It Live</h2>
+          <a
+            v-if="$page.project.deployedLink"
+            :href="$page.project.deployedLink"
+          >{{$page.project.deployedLink}}</a>
+          <h2 v-if="$page.project.sourceCodeLink" class="article__heading">See The Code</h2>
+          <a
+            v-if="$page.project.sourceCodeLink"
+            :href="$page.project.sourceCodeLink"
+          >{{$page.project.sourceCodeLink}}</a>
+        </article>
+      </div>
+    </section>
+  </Layout>
+</template>
+
+<page-query>
+query ($id: ID!) {
+   project: project (id: $id) {
+    id
+    title
+    path
+    subtitle
+    sourceCodeLink
+    deployedLink
+    content
+    featuredImage(width: 800)
+    tools {
+      id
+      name
+    }
+  }
+
+}
+</page-query>
+<script>
+export default {
+  name: "Project Template",
+  metaInfo() {
+    return {
+      title: this.$page.project.name,
+      meta: [{ name: "author", content: "Chad Collins" }],
+    };
+  },
+};
+</script>
+
+#
+
+<style lang="scss">
+.article__heading:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.article__image {
+  max-width: 100%;
+}
+
+.tools-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tool {
+  display: flex;
+  margin: 0.3rem;
+  background-color: $bodyText;
+  color: $background;
+  font-size: smaller;
+  padding: 0.2rem 0.7rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+.breadcrumb__item {
+  margin: 0 0.5rem;
+}
+</style>

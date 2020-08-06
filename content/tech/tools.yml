@@ -1,0 +1,34 @@
+- id: vue
+  name: 'Vue'
+  image: vue.png
+  family: frontEnd
+
+- id: javascript
+  name: 'Javascript'
+  image: vue.png
+  family: frontEnd
+
+- id: css3
+  name: 'CSS 3'
+  image: css3.png
+  family: frontEnd
+
+- id: html5
+  name: 'HTML 5'
+  image: vue.png
+  family: frontEnd
+
+- id: api
+  name: 'API'
+  image: vue.png
+  family: backEnd
+
+- id: node
+  name: 'Node'
+  image: vue.png
+  family: backEnd
+
+- id: react
+  name: 'React'
+  image: vue.png
+  family: frontEnd
