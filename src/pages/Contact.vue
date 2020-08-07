@@ -20,21 +20,34 @@
           </p>
 
           <label for="name">Your name</label>
-          <input type="text" name="name" placeholder="Your name .." v-model="formData.name" />
+          <input
+            type="text"
+            name="name"
+            placeholder="Your name .."
+            v-model="formData.name"
+            required
+          />
 
           <label for="email">Your email</label>
-          <input type="email" name="email" placeholder="Your email .." v-model="formData.email" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email .."
+            v-model="formData.email"
+            required
+          />
 
-          <label for="email">Subject</label>
+          <label for="subject">Subject</label>
           <input
             type="text"
             name="subject"
             placeholder="Subject line .."
             v-model="formData.subject"
+            required
           />
 
           <label for="message">Message</label>
-          <textarea name="message" v-model="formData.message"></textarea>
+          <textarea name="message" v-model="formData.message" required></textarea>
 
           <button class="button" type="submit">Submit</button>
         </form>
