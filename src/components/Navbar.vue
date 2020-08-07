@@ -1,6 +1,10 @@
 <template>
   <div id="navbar">
-    <button class="burger" @click="displayNav = !displayNav" v-bind:class="{ change: displayNav }">
+    <button
+      class="burger"
+      @click="displayNav = !displayNav"
+      v-bind:class="{ change: displayNav }"
+    >
       <div class="burger__line line1"></div>
       <div class="burger__line line2"></div>
       <div class="burger__line line3"></div>
@@ -15,9 +19,10 @@
       <g-link class="nav__link" to="/contact">Contact</g-link>
       <a
         class="nav__link"
-        href="https://drive.google.com/file/d/1mv2VW-LebFrwGf-xwQRNs6ciwp_xE2Ou/view?usp=sharing"
+        href="https://drive.google.com/file/d/1OggN9846DI3wN7UiBQktka4VUSQXe4BI/view?usp=sharing"
         target="_blank"
-      >Resume</a>
+        >Resume</a
+      >
       <div class="nav-links-right">
         <a href="http://github.com/chad-collins">
           <SvgIcon class="icon" icon="github" height="20" width="20" />
