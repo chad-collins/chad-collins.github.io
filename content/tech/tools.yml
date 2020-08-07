@@ -13,21 +13,6 @@
   image: jamstack.png
   family: frontEnd
 
-- id: pairprogramming
-  name: "Pair Programming"
-  image: pair.png
-  family: other
-
-- id: git
-  name: "Git"
-  image: git.png
-  family: other
-
-- id: group
-  name: "Group Project"
-  image: group.png
-  family: other
-
 - id: javascript
   name: "Javascript"
   image: javascript.png
@@ -48,16 +33,6 @@
   image: react.png
   family: frontEnd
 
-- id: photoshop
-  name: "Photoshop"
-  image: adobe.png
-  family: other
-
-- id: agile
-  name: "Agile"
-  image: agile.png
-  family: other
-
 - id: java
   name: "Java"
   image: java.png
@@ -72,3 +47,28 @@
   name: "Node"
   image: node.png
   family: backEnd
+
+- id: agile
+  name: "Scrum"
+  image: agile.png
+  family: other
+
+- id: photoshop
+  name: "Photoshop"
+  image: adobe.png
+  family: other
+
+- id: pairprogramming
+  name: "Pairing"
+  image: pair.png
+  family: other
+
+- id: git
+  name: "Git"
+  image: git.png
+  family: other
+
+- id: group
+  name: "Agile Team"
+  image: group.png
+  family: other

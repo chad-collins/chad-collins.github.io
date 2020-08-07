@@ -66,7 +66,6 @@
             :key="frontendTool.id"
           >
             <g-image
-              v-if="frontendTool.node.image"
               class="tools__image"
               :src="
                 require(`!!assets-loader?width=50!@images/${
@@ -91,7 +90,6 @@
             :key="backendTool.id"
           >
             <g-image
-              v-if="backendTool.node.image"
               class="tools__image"
               :src="
                 require(`!!assets-loader?width=50!@images/${
@@ -111,17 +109,16 @@
         <ul class="tools">
           <li
             class="tools__item"
-            v-for="tool in $page.other.edges"
-            :key="tool.id"
+            v-for="skill in $page.skills.edges"
+            :key="skill.id"
           >
             <g-image
-              v-if="tool.node.image"
               class="tools__image"
               :src="
-                require(`!!assets-loader?width=50!@images/${tool.node.image}`)
+                require(`!!assets-loader?width=50!@images/${skill.node.image}`)
               "
             />
-            <p class="tools__name">{{ tool.node.name }}</p>
+            <p class="tools__name">{{ skill.node.name }}</p>
           </li>
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
@@ -170,7 +167,7 @@ query {
       }
     }
   }
-   other: allTools(filter: { family: { eq: "other" }})  {
+   skills: allTools(filter: { family: { eq: "other" }})  {
     edges {
       node {
         id
