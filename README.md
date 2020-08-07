@@ -16,11 +16,7 @@
 
 ### 2. Create a Gridsome project
 
-1. `gridsome create my-portfolio https://github.com/chad-collins/jamstack-portfolio.git` to install default starter
+1. `gridsome create my-portfolio https://github.com/chad-collins/jamstack-portfolio.git` to install
 2. `cd my-portfolio` to open the folder
 3. `gridsome develop` to start a local dev server at `http://localhost:8080`
 4. Happy coding 🎉🙌
-
-### 3. Deploy Gridsome project
-
-Use this deploy button to get your own copy of the repository.
