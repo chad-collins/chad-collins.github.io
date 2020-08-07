@@ -7,4 +7,4 @@ published: false
 
 ### This project has moved.
 
-See it [here.](../project/movie-catalog)
+See it [here.](../movie-catalog)
