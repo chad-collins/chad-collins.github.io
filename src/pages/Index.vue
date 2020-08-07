@@ -1,9 +1,21 @@
 <template>
-  <Layout headerTitle="Hi, I'm Chad." headerSubtitle="I'm a Full-Stack Developer">
+  <Layout
+    headerTitle="Hi, I'm Chad."
+    headerSubtitle="I'm a Full-Stack Developer"
+  >
     <section id="about" class="section">
       <div class="container">
         <p>🍨💻🦖</p>
-        <p>My name is Chad Collins and I'm a software developer based in Columbus Ohio. I spent several years in the wireless industry with experiences ranging from management, tech support, and customer service. I made the decision to become a software developer because I wanted a career that allowed me to combine my creative and analytical skill sets to solve problems. Programming allows me to collaborate on projects and watch my ideas come to life as I code, and I can’t think of a better way to spend my life.</p>
+        <p>
+          My name is Chad Collins and I'm a software developer based in Columbus
+          Ohio. I spent several years in the wireless industry with experiences
+          ranging from management, tech support, and customer service. I made
+          the decision to become a software developer because I wanted a career
+          that allowed me to combine my creative and analytical skill sets to
+          solve problems. Programming allows me to collaborate on projects and
+          watch my ideas come to life as I code, and I can’t think of a better
+          way to spend my life.
+        </p>
       </div>
     </section>
 
@@ -13,23 +25,32 @@
         <div class="summary__grid">
           <div class="summary__box">
             <h3 class="box__title">A Passion to Learn</h3>
-            <p
-              class="box__content"
-            >I love gaining new skills and sharpening my existing ones. Technology is always moving forward, and learning new skills to keep pace is a challenge that drives me.</p>
+            <p class="box__content">
+              I love gaining new skills and sharpening my existing ones.
+              Technology is always moving forward, and learning new skills to
+              keep pace is a challenge that drives me.
+            </p>
           </div>
 
           <div class="summary__box">
             <h3 class="box__title">Broad Business Exposure</h3>
-            <p
-              class="box__content"
-            >I have several years of experience working for a Fortune 500 company, building and managing client-facing teams tasked with creating exceptional client experiences. I have extensive experience collaborating as part of a team to reach our shared vision.</p>
+            <p class="box__content">
+              I have several years of experience working for a Fortune 500
+              company, building and managing client-facing teams tasked with
+              creating exceptional client experiences. I have extensive
+              experience collaborating as part of a team to reach our shared
+              vision.
+            </p>
           </div>
 
           <div class="summary__box">
             <h3 class="box__title">Full Stack Experience</h3>
-            <p
-              class="box__content"
-            >I've worked on projects where I needed to be involved through every part of process, from creating Java and Spring Restful APIs, building the decoupled front-end with React, and doing all of the styling from scratch."</p>
+            <p class="box__content">
+              I've worked on projects where I needed to be involved through
+              every part of process, from creating Java and Spring Restful APIs,
+              building the decoupled front-end with React, and doing all of the
+              styling from scratch."
+            </p>
           </div>
         </div>
       </div>
@@ -39,13 +60,21 @@
         <h2 class="lined-heading">Technology</h2>
         <h3 class="box__title">Front End</h3>
         <ul class="tools">
-          <li class="tools__item" v-for="tool in $page.frontEnd.edges" :key="tool.id">
+          <li
+            class="tools__item"
+            v-for="frontendTool in $page.frontEnd.edges"
+            :key="frontendTool.id"
+          >
             <g-image
-              v-if="tool.node.image"
+              v-if="frontendTool.node.image"
               class="tools__image"
-              :src="require(`!!assets-loader?width=50!@images/${tool.node.image}`)"
+              :src="
+                require(`!!assets-loader?width=50!@images/${
+                  frontendTool.node.image
+                }`)
+              "
             />
-            <p class="tools__name">{{tool.node.name}}</p>
+            <p class="tools__name">{{ frontendTool.node.name }}</p>
           </li>
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
@@ -56,13 +85,43 @@
 
         <h3 class="box__title">Back End</h3>
         <ul class="tools">
-          <li class="tools__item" v-for="tool in $page.backEnd.edges" :key="tool.id">
+          <li
+            class="tools__item"
+            v-for="backendTool in $page.backEnd.edges"
+            :key="backendTool.id"
+          >
+            <g-image
+              v-if="backendTool.node.image"
+              class="tools__image"
+              :src="
+                require(`!!assets-loader?width=50!@images/${
+                  backendTool.node.image
+                }`)
+              "
+            />
+            <p class="tools__name">{{ backendTool.node.name }}</p>
+          </li>
+          <li class="tools__item spacer"></li>
+          <li class="tools__item spacer"></li>
+          <li class="tools__item spacer"></li>
+          <li class="tools__item spacer"></li>
+          <li class="tools__item spacer"></li>
+        </ul>
+        <h3 class="box__title">Skills &#38; Tools</h3>
+        <ul class="tools">
+          <li
+            class="tools__item"
+            v-for="tool in $page.other.edges"
+            :key="tool.id"
+          >
             <g-image
               v-if="tool.node.image"
               class="tools__image"
-              :src="require(`!!assets-loader?width=50!@images/${tool.node.image}`)"
+              :src="
+                require(`!!assets-loader?width=50!@images/${tool.node.image}`)
+              "
             />
-            <p class="tools__name">{{tool.node.name}}</p>
+            <p class="tools__name">{{ tool.node.name }}</p>
           </li>
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
@@ -84,7 +143,6 @@
     </section>
   </Layout>
 </template>
-
 
 <page-query>
 query {
@@ -112,6 +170,16 @@ query {
       }
     }
   }
+   other: allTools(filter: { family: { eq: "other" }})  {
+    edges {
+      node {
+        id
+        name
+        image
+        family
+      }
+    }
+  }
 }
 </page-query>
 
@@ -128,7 +196,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 .tools {
