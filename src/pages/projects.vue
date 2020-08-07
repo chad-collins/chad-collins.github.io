@@ -1,16 +1,9 @@
 <template>
-  <Layout
-    headerTitle="My Projects"
-    headerSubtitle="See what I've been working on."
-  >
+  <Layout headerTitle="My Projects" headerSubtitle="See what I've been working on.">
     <section class="section">
       <div class="grid-wrapper">
         <ul class="cards-grid">
-          <li
-            class="grid-item"
-            v-for="project in $page.allProject.edges"
-            :key="project.node.id"
-          >
+          <li class="grid-item" v-for="project in $page.allProject.edges" :key="project.node.id">
             <g-link :to="project.node.path">
               <g-image
                 class="card__image"
@@ -39,7 +32,7 @@ query {
     siteName
     siteDescription
   }
-  allProject {
+  allProject(filter: { published: {ne: false} }) {
     totalCount
     edges {
       node {

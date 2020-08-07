@@ -13,12 +13,13 @@
         </ul>
         <article class="article">
           <g-image
+            v-if="$page.project.featuredImage"
             class="article__image"
-            :src="$page.project.featuredImage || `https://via.placeholder.com/800x450?text=No+Image+Available`"
+            :src="$page.project.featuredImage"
           />
-          <h2 class="article__heading">Summary</h2>
+          <h2 v-if="$page.project.content" class="article__heading">Summary</h2>
           <p v-html="$page.project.content" />
-          <h2 class="article__heading">Skills &#38; Tools</h2>
+          <h2 v-if="$page.project.tools[1]" class="article__heading">Skills &#38; Tools</h2>
           <ul class="tools-list">
             <li class="tool" v-for="tool in $page.project.tools" :key="tool.id">{{tool.name}}</li>
           </ul>
