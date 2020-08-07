@@ -2,12 +2,16 @@
 title: "Jamstack Blog Template"
 subtitle: "An official Gridsome Starter."
 sourceCodeLink: "http://github.com/chad-collins/gridsome-starter-netlifycms-buefy"
-deployedLink:
+deployedLink: https://gridsome-starter.chadcollins.net/
 featuredImage: ./images/jamstack-blog-template.png
 tools:
   - gridsome
+  - vue
+  - jamstack
   - javascript
   - jamstack
+  - git
+
 date: 2020-07-30
 ---
 

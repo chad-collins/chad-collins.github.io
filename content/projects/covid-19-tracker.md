@@ -9,6 +9,7 @@ tools:
   - javascript
   - css3
   - html
+  - git
 date: 2020-06-01
 ---
 

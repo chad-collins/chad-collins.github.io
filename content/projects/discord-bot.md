@@ -7,6 +7,7 @@ featuredImage: ./images/discord-bot.png
 tools:
   - node
   - javascript
+  - git
 date: 2020-04-01
 ---
 

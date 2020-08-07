@@ -214,7 +214,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1px;
+  margin: 1px 1px 15px 1px;
   width: 100px;
   flex-wrap: wrap;
   transition: all 0.2s ease-in-out;
