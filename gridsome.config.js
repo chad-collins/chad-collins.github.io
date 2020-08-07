@@ -20,7 +20,7 @@ module.exports = {
   siteDescription: 'A portfolio website for full stack developer Chad Collins',
   templates: {
     Post: '/blog/:title',
-    Project: '/project/:title',
+    Project: '/projects/:title',
   },
   plugins: [
     {
