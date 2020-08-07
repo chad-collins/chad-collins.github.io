@@ -69,11 +69,13 @@ $outer-margin: 1rem;
   justify-content: center;
   margin-right: 0.8rem;
   width: 50px;
+  user-select: none;
 }
 
 .branding__text {
   font-size: 1.6rem;
   font-weight: 400;
+  user-select: none;
 }
 
 .nav {

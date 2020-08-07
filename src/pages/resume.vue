@@ -60,6 +60,7 @@ export default {};
 .card__label {
   font-style: italic;
   font-weight: bolder;
+  user-select: none;
 }
 @media screen and (min-width: 730px) {
   .card {
