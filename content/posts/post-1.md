@@ -1,8 +1,9 @@
 ---
-title: "Lorem Ipsum Post 2"
+title: "Getting Started With Gridsome"
 description: "Lorem markdownum, illi novo, fallitur milia et alii pennas nomina lanigerosque
 dentes.."
 date: 2020-07-23
+published: true
 ---
 
 # Haec solum

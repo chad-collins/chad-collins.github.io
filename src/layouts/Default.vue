@@ -50,6 +50,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   margin-top: 2rem;
 }
 

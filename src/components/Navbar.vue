@@ -14,6 +14,8 @@
       <g-link class="nav__link" to="/projects/">Projects</g-link>
       <g-link class="nav__link" to="/contact/">Contact</g-link>
       <g-link class="nav__link" to="/resume/">Resume</g-link>
+      <!-- <g-link class="nav__link" to="/blog/">Blog</g-link> -->
+
       <div class="nav-links-right">
         <a href="http://github.com/chad-collins">
           <SvgIcon class="icon" icon="github" height="20" width="20" />
@@ -132,6 +134,7 @@ $outer-margin: 1rem;
   background-color: white;
   border-bottom: 1px solid $light;
   padding: 1rem;
+  display: flex;
 }
 
 .icon {

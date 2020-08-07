@@ -1,14 +1,19 @@
 <template>
   <Layout>
-    <br>
-    <g-link to="/" class="link">  &larr; Go Back</g-link>
-    <div class="post-title">
-      <h1>{{$page.post.title}}</h1>
-      <p class="post-date"> {{ $page.post.date}} | {{$page.post.timeToRead}} min read</p>
-    </div>
-    <div class="post-content">
-      <p v-html="$page.post.content" />
-    </div>
+    <section class="section">
+      <div class="container">
+        <g-link to="/" class="link">&larr; Go Back</g-link>
+
+        <article class="article">
+          <div class="article__heading">
+            <h1 class="article__title">{{$page.post.title}}</h1>
+            <p>{{ $page.post.date }} / {{ $page.post.timeToRead }} min read</p>
+          </div>
+
+          <p v-html="$page.post.content" />
+        </article>
+      </div>
+    </section>
   </Layout>
 </template>
 
@@ -18,20 +23,19 @@ query Post ($path: String!) {
     id
     title
     content
-    date (format: "D MMMM YYYY")
+    date (format: "MMMM Do, YYYY")
     timeToRead
   }
 }
 </page-query>
 
-<style>
-
+<style lang="scss" scoped>
 .post-title {
   text-align: center;
   font-size: 30px;
   line-height: 10px;
   padding: 2em 0;
-  font-family: 'Stylish';
+  font-family: "Stylish";
 }
 
 .post-date {
@@ -39,7 +43,14 @@ query Post ($path: String!) {
   font-weight: 400;
 }
 
+.article__heading {
+  border-bottom: 1px solid $light;
+}
+
+.article__title {
+  font-size: 3rem;
+  margin-bottom: 0;
+}
 .post-content {
-  font-size: 20px;
 }
 </style>

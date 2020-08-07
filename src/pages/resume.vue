@@ -18,7 +18,7 @@
 
           <a
             class="card"
-            href="https://docs.google.com/document/d/1w_CKLhCxuxdYepTNCNL3_fctJ4tBS_gxSmpuCp2cDuc/edit?usp=sharing"
+            href="https://docs.google.com/document/d/e/2PACX-1vQm_smbI_X2tPIynDUqzjiCxfSqYPew0hMvGlqeM11DdQn3s1IwjepyJOWAckr38-ICPCUGEJ7KIZ4X/pub"
             target="_blank"
           >
             <p class="card__label">CV</p>
