@@ -1,59 +1,74 @@
 - id: vue
-  name: 'Vue'
+  name: "Vue"
   image: vue.png
   family: frontEnd
 
 - id: gridsome
-  name: 'Gridsome'
+  name: "Gridsome"
   image: gridsome.png
   family: frontEnd
 
 - id: jamstack
-  name: 'JAMstack'
+  name: "JAMstack"
   image: jamstack.png
   family: frontEnd
 
+- id: pairprogramming
+  name: "Pair Programming"
+  image: pair.png
+  family: other
+
+- id: git
+  name: "Git"
+  image: git.png
+  family: other
+
+- id: group
+  name: "Group Project"
+  image: group.png
+  family: other
+
 - id: javascript
-  name: 'Javascript'
+  name: "Javascript"
   image: javascript.png
   family: frontEnd
 
 - id: css3
-  name: 'CSS 3'
+  name: "CSS 3"
   image: css3.png
   family: frontEnd
 
 - id: html5
-  name: 'HTML 5'
+  name: "HTML 5"
   image: html5.png
   family: frontEnd
 
 - id: react
-  name: 'React'
+  name: "React"
   image: react.png
   family: frontEnd
 
 - id: photoshop
-  name: 'Photoshop'
+  name: "Photoshop"
   image: adobe.png
   family: other
 
 - id: agile
-  name: 'Agile'
+  name: "Agile"
   image: agile.png
   family: other
 
 - id: java
-  name: 'Java'
+  name: "Java"
   image: java.png
   family: backEnd
 
 - id: api
-  name: 'Restful APIs'
+  name: "Restful APIs"
   image: restapi.png
   family: backEnd
 
 - id: node
-  name: 'Node'
+  name: "Node"
   image: node.png
   family: backEnd

@@ -1,19 +1,29 @@
 <template>
-  <Layout headerTitle="My Projects" headerSubtitle="See what I've been working on.">
+  <Layout
+    headerTitle="My Projects"
+    headerSubtitle="See what I've been working on."
+  >
     <section class="section">
       <div class="grid-wrapper">
         <ul class="cards-grid">
-          <li class="grid-item" v-for="project in $page.allProject.edges" :key="project.node.id">
+          <li
+            class="grid-item"
+            v-for="project in $page.allProject.edges"
+            :key="project.node.id"
+          >
             <g-link :to="project.node.path">
               <g-image
                 class="card__image"
-                :src="project.node.featuredImage  || `https://via.placeholder.com/400x225?text=No+Image+Available`"
+                :src="
+                  project.node.featuredImage ||
+                    `https://via.placeholder.com/400x225?text=No+Image+Available`
+                "
               ></g-image>
             </g-link>
             <g-link :to="project.node.path">
-              <h2 class="card__title">{{project.node.title}}</h2>
+              <h2 class="card__title">{{ project.node.title }}</h2>
             </g-link>
-            <p class="card__subtitle">{{project.node.subtitle}}</p>
+            <p class="card__subtitle">{{ project.node.subtitle }}</p>
           </li>
           <li class="grid-item"></li>
           <li class="grid-item"></li>
@@ -62,7 +72,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss">
 .grid-wrapper {
   display: flex;
@@ -80,6 +89,7 @@ export default {
   list-style: none;
   width: 100%;
   max-width: 100vw;
+  width: 1400px;
   justify-content: center;
 }
 
