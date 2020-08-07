@@ -11,13 +11,9 @@
       <p class="branding__text">Chad Collins</p>
     </g-link>
     <nav v-bind:class="{ show: displayNav }" class="nav">
-      <g-link class="nav__link" to="/projects">Projects</g-link>
-      <g-link class="nav__link" to="/contact">Contact</g-link>
-      <a
-        class="nav__link"
-        href="https://drive.google.com/file/d/1OggN9846DI3wN7UiBQktka4VUSQXe4BI/view?usp=sharing"
-        target="_blank"
-      >Resume</a>
+      <g-link class="nav__link" to="/projects/">Projects</g-link>
+      <g-link class="nav__link" to="/contact/">Contact</g-link>
+      <g-link class="nav__link" to="/resume/">Resume</g-link>
       <div class="nav-links-right">
         <a href="http://github.com/chad-collins">
           <SvgIcon class="icon" icon="github" height="20" width="20" />
