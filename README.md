@@ -1,6 +1,8 @@
-# Gridsome Minimal Blog
+# My Portfolio
 
-> A blog starter theme for [Gridsome]() with a minimalistic design.
+> A JAMstack portfolio built using gridsome.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/57680d9b-4654-4942-a671-5f55d3bcc26b/deploy-status)](https://app.netlify.com/sites/chadcollins/deploys)
 
 ## See it live
 
@@ -19,10 +21,6 @@
 3. `gridsome develop` to start a local dev server at `http://localhost:8080`
 4. Happy coding 🎉🙌
 
-<!-- Markdown snippet -->
-
 ### 3. Deploy Gridsome project
 
 Use this deploy button to get your own copy of the repository.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](**https://app.netlify.com/start/deploy?repository=https://github.com/chad-collins/jamstack-portfolio.git)
