@@ -18,10 +18,10 @@
 
       <div class="nav-links-right">
         <a href="http://github.com/chad-collins">
-          <SvgIcon class="icon" icon="github" height="20" width="20" />
+          <font-awesome class="icon" :icon="['fab', 'github']" />
         </a>
         <a href="http://linkedin.com/in/chadacollins">
-          <SvgIcon class="icon" icon="linkedin" height="20" width="20" />
+          <font-awesome class="icon" :icon="['fab', 'linkedin']" />
         </a>
       </div>
     </nav>
@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import SvgIcon from "@/components/SvgIcon";
-
 export default {
   components: {
     SvgIcon,
@@ -139,6 +137,7 @@ $outer-margin: 1rem;
 
 .icon {
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .icon:last-child {

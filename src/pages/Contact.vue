@@ -1,9 +1,26 @@
 <template>
   <Layout headerTitle="Contact Me" headerSubtitle="Let's get in touch">
     <section class="section">
-      <div class="container">
+      <div class="flex-wrapper">
+        <div class="column">
+          <p>
+            <font-awesome :icon="['far', 'envelope']" />
+            <a href="mailto:contact@chadcollins.net">&nbsp;&nbsp;contact@chadcollins.net</a>
+          </p>
+          <p>
+            <font-awesome :icon="['fab', 'linkedin']" />
+            <a
+              href="https://linkedin.com/in/chadacollins"
+            >&nbsp;&nbsp;https://linkedin.com/in/chadacollins</a>
+          </p>
+          <p>
+            <font-awesome :icon="['fab', 'github']" />
+            <a href="https://github.com/chad-collins">&nbsp;&nbsp;https://github.com/chad-collins</a>
+          </p>
+        </div>
+
         <form
-          class="form"
+          class="form column"
           name="contact"
           method="post"
           v-on:submit.prevent="handleSubmit"
@@ -88,6 +105,16 @@ export default {
 </script>
 
 <style lang="scss">
+.flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+  max-width: 1200px;
+}
+.column {
+  margin: 2rem;
+}
 .form {
   width: 90%;
   max-width: 600px;
@@ -110,13 +137,14 @@ input {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   height: 3.3rem;
   width: 100%;
 }
 
 label {
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .submit:hover {
