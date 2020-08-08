@@ -1,21 +1,20 @@
 <template>
-  <Layout
-    headerTitle="Hi, I'm Chad."
-    headerSubtitle="I'm a Full-Stack Developer"
-  >
+  <Layout headerTitle="Hi, I'm Chad." headerSubtitle="I'm a Full-Stack Developer">
     <section id="about" class="section">
       <div class="container">
-        <p>🍨💻🦖</p>
-        <p>
-          My name is Chad Collins and I'm a software developer based in Columbus
-          Ohio. I spent several years in the wireless industry with experiences
-          ranging from management, tech support, and customer service. I made
-          the decision to become a software developer because I wanted a career
-          that allowed me to combine my creative and analytical skill sets to
-          solve problems. Programming allows me to collaborate on projects and
-          watch my ideas come to life as I code, and I can’t think of a better
-          way to spend my life.
-        </p>
+        <div class="about__body">
+          <p class="about__emoji">🍨💻🦖</p>
+          <p>
+            My name is Chad Collins and I'm a software developer based in Columbus
+            Ohio. I spent several years in the wireless industry with experiences
+            ranging from management, tech support, and customer service. I made
+            the decision to become a software developer because I wanted a career
+            that allowed me to combine my creative and analytical skill sets to
+            solve problems. Programming allows me to collaborate on projects and
+            watch my ideas come to life as I code, and I can’t think of a better
+            way to spend my life.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -84,11 +83,7 @@
 
         <h3 class="box__title">Back End</h3>
         <ul class="tools">
-          <li
-            class="tools__item"
-            v-for="backendTool in $page.backEnd.edges"
-            :key="backendTool.id"
-          >
+          <li class="tools__item" v-for="backendTool in $page.backEnd.edges" :key="backendTool.id">
             <g-image
               class="tools__image"
               :src="
@@ -107,11 +102,7 @@
         </ul>
         <h3 class="box__title">Skills &#38; Tools</h3>
         <ul class="tools">
-          <li
-            class="tools__item"
-            v-for="skill in $page.skills.edges"
-            :key="skill.id"
-          >
+          <li class="tools__item" v-for="skill in $page.skills.edges" :key="skill.id">
             <g-image
               class="tools__image"
               :src="
@@ -194,7 +185,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.about__body {
+  font-size: 1.1rem;
+  line-height: 30px;
+}
+
+.about__emoji {
+  text-align: center;
+}
+
 .tools {
   margin: 0;
   padding: 0;
