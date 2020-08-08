@@ -8,23 +8,18 @@
         </p>
 
         <div class="wrapper">
-          <a
-            class="card"
-            href="https://drive.google.com/file/d/1OxFjbsuo7TvmTbgV7N8gvJSCSEbjrMn4/view?usp=sharing"
-            target="_blank"
-          >
-            <p class="card__label">Resume</p>
+          <a class="card" href="/documents/chad_collins_resume.pdf" target="_blank" download>
+            <p class="card__title">Resume</p>
           </a>
 
-          <a
-            class="card"
-            href="https://docs.google.com/document/d/e/2PACX-1vQm_smbI_X2tPIynDUqzjiCxfSqYPew0hMvGlqeM11DdQn3s1IwjepyJOWAckr38-ICPCUGEJ7KIZ4X/pub"
-            target="_blank"
-          >
-            <p class="card__label">CV</p>
+          <a class="card" href="/documents/chad_collins_cv.docx" target="_blank">
+            <p class="card__title">CV</p>
           </a>
         </div>
       </div>
+    </section>
+    <section class="section">
+      <div class="container"></div>
     </section>
   </Layout>
 </template>
@@ -34,6 +29,13 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+.iframe {
+  width: 100vw;
+  max-width: 100%;
+  height: max-content;
+  border: 0;
+}
+
 .wrapper {
   width: 100%;
   margin: 0;
@@ -43,29 +45,31 @@ export default {};
   justify-content: center;
 }
 .card {
-  box-sizing: border-box;
   display: flex;
-  background-color: $bodyText;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
   width: calc(37vw - 20px);
   height: 46vw;
   max-width: 225px;
   max-height: 300px;
-  color: $background;
+  border: 1px solid $light;
   margin: 3rem 0.5rem;
-  font-size: 1.3rem;
-  justify-content: center;
-  align-items: center;
 }
 
-.card__label {
+.card__title {
+  font-size: 1.3rem;
   font-style: italic;
   font-weight: bolder;
   user-select: none;
 }
+
 @media screen and (min-width: 730px) {
+  .card__title {
+    font-size: 2.5rem;
+  }
   .card {
     margin: 3rem;
-    font-size: 3rem;
   }
 }
 </style>
