@@ -30,9 +30,6 @@
 
 <script>
 export default {
-  components: {
-    SvgIcon,
-  },
   data() {
     return {
       displayNav: false,
