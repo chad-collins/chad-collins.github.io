@@ -5,7 +5,7 @@
         <div class="column">
           <p>
             <font-awesome :icon="['far', 'envelope']" />
-            <a href="mailto:contact@chadcollins.net">&nbsp;&nbsp;contact@chadcollins.net</a>
+            <a href="mailto:chadcollins.co@gmail.com">&nbsp;&nbsp;contact@chadcollins.net</a>
           </p>
           <p>
             <font-awesome :icon="['fab', 'linkedin']" />
