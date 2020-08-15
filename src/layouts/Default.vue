@@ -6,7 +6,7 @@
         <div class="container">
           <div class="header">
             <h1 class="header__title">{{headerTitle}}</h1>
-            <h2 v-if="headerSubtitle" class="header__subtitle lined-heading">{{headerSubtitle}}</h2>
+            <h2 v-if="headerSubtitle" class="header__subtitle">{{headerSubtitle}}</h2>
           </div>
         </div>
       </section>
@@ -46,24 +46,25 @@ body {
 }
 
 .header {
-  display: flex;
+  border-bottom: 1px solid $light;
+  width: 100%;
   box-sizing: border-box;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  text-align: center;
   margin-top: 2rem;
+  line-height: 40px;
+  margin-bottom: 10px;
 }
 
 .header__title {
+  font-size: 2rem;
   padding: 0;
   margin: 0;
 }
 
 .header__subtitle {
-  margin: 0;
+  margin-top: 5px;
   font-weight: 200;
-  font-size: small;
+  font-size: 1rem;
   font-weight: 600;
   padding: 0;
 }
@@ -78,12 +79,14 @@ body {
 @media screen and (min-width: 940px) {
   .header {
     margin-top: 4.5rem;
+    justify-content: center;
   }
   .header__title {
     font-size: 4.5rem;
   }
   .header__subtitle {
     font-size: 1.3rem;
+    margin-top: 35px;
   }
 }
 </style>

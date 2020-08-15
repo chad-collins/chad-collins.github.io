@@ -4,18 +4,18 @@
       <div class="flex-wrapper">
         <div class="column">
           <p>
-            <font-awesome :icon="['far', 'envelope']" />
-            <a href="mailto:chadcollins.co@gmail.com">&nbsp;&nbsp;contact@chadcollins.net</a>
+            <font-awesome class="icon" :icon="['far', 'envelope']" />
+            <a href="mailto:chadcollins.co@gmail.com">chadcollins.co@gmail.com</a>
           </p>
           <p>
-            <font-awesome :icon="['fab', 'linkedin']" />
+            <font-awesome class="icon" :icon="['fab', 'linkedin']" />
             <a
               href="https://linkedin.com/in/chadacollins"
             >&nbsp;&nbsp;https://linkedin.com/in/chadacollins</a>
           </p>
           <p>
-            <font-awesome :icon="['fab', 'github']" />
-            <a href="https://github.com/chad-collins">&nbsp;&nbsp;https://github.com/chad-collins</a>
+            <font-awesome class="icon" :icon="['fab', 'github']" />
+            <a href="https://github.com/chad-collins">https://github.com/chad-collins</a>
           </p>
         </div>
 
@@ -149,6 +149,10 @@ label {
 
 .submit:hover {
   background-color: $bodyText;
+}
+
+.icon {
+  margin-right: 5px;
 }
 
 /*** iPhone and iOS Form Input Zoom Fixes ***/
