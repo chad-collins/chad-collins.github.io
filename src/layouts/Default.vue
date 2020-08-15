@@ -47,6 +47,7 @@ body {
 
 .header {
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -57,12 +58,10 @@ body {
 .header__title {
   padding: 0;
   margin: 0;
-  font-size: 2rem;
 }
 
 .header__subtitle {
   margin: 0;
-
   font-weight: 200;
   font-size: small;
   font-weight: 600;
@@ -77,6 +76,9 @@ body {
 }
 
 @media screen and (min-width: 940px) {
+  .header {
+    margin-top: 4.5rem;
+  }
   .header__title {
     font-size: 4.5rem;
   }

@@ -96,22 +96,22 @@ $outer-margin: 1rem;
   display: inline-block;
   cursor: pointer;
   position: absolute;
-  top: 22px;
+  top: 27px;
   right: $outer-margin;
 }
 
 .burger__line {
-  width: 20px;
-  height: 3px;
-  background-color: $light;
-
+  width: 33px;
+  height: 4px;
+  margin-bottom: 0.35rem;
+  background-color: $dark;
   transition: 0.4s;
 }
 
 /* Rotate first bar */
 .change .line1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-  transform: rotate(-45deg) translate(-9px, 6px);
+  -webkit-transform: rotate(-45deg) translate(-7px, 7px);
+  transform: rotate(-45deg) translate(-7px, 7px);
 }
 
 /* Fade out the second bar */
@@ -121,8 +121,8 @@ $outer-margin: 1rem;
 
 /* Rotate last bar */
 .change .line3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
-  transform: rotate(45deg) translate(-8px, -8px);
+  -webkit-transform: rotate(-45deg) translate(-7px, 7px);
+  transform: rotate(45deg) translate(-7px, -7px);
 }
 
 .nav-links-right {
