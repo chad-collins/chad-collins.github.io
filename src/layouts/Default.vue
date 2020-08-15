@@ -17,6 +17,7 @@
           &copy;2020. Built by
           <a href="http://linkedin.com/in/chadacollins">Chad Collins</a>
         </p>
+        <Logo />
       </div>
     </main>
   </div>
@@ -25,8 +26,9 @@
 
 <script>
 import Navbar from "../components/Navbar";
+import Logo from "@/components/Logo.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Logo },
   props: { headerTitle: "", headerSubtitle: "" },
 };
 </script>
@@ -74,6 +76,14 @@ body {
   text-align: center;
   font-size: 1rem;
   padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5rem;
+
+  p {
+    margin-bottom: 2rem;
+  }
 }
 
 @media screen and (min-width: 940px) {

@@ -7,7 +7,7 @@
     </button>
     <g-link class="branding" to="/">
       <!-- <g-image class="branding__image" src="@/assets/images/logo--primary.png" /> -->
-      <div class="branding__logo">CC</div>
+      <Logo />
       <p class="branding__text">Chad Collins</p>
     </g-link>
     <nav v-bind:class="{ show: displayNav }" class="nav">
@@ -29,7 +29,9 @@
 </template>
 
 <script>
+import Logo from "@/components/Logo.vue";
 export default {
+  components: { Logo },
   data() {
     return {
       displayNav: false,
@@ -96,14 +98,14 @@ $outer-margin: 1rem;
   display: inline-block;
   cursor: pointer;
   position: absolute;
-  top: 27px;
+  top: 24px;
   right: $outer-margin;
 }
 
 .burger__line {
-  width: 33px;
+  width: 27px;
   height: 4px;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
   background-color: $dark;
   transition: 0.4s;
 }
@@ -111,7 +113,7 @@ $outer-margin: 1rem;
 /* Rotate first bar */
 .change .line1 {
   -webkit-transform: rotate(-45deg) translate(-7px, 7px);
-  transform: rotate(-45deg) translate(-7px, 7px);
+  transform: rotate(-45deg) translate(-4px, 7px);
 }
 
 /* Fade out the second bar */
@@ -122,7 +124,7 @@ $outer-margin: 1rem;
 /* Rotate last bar */
 .change .line3 {
   -webkit-transform: rotate(-45deg) translate(-7px, 7px);
-  transform: rotate(45deg) translate(-7px, -7px);
+  transform: rotate(45deg) translate(-4px, -7px);
 }
 
 .nav-links-right {
