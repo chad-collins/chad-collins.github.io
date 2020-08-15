@@ -3,7 +3,7 @@
     <section id="about" class="section">
       <div class="container">
         <div class="about__body">
-          <p class="about__emoji">🍨💻🦖</p>
+          <p class="about__emoji">🍨 💻 🐺 🦖</p>
           <p>
             My name is Chad Collins and I'm a software developer based in Columbus
             Ohio. I spent several years in the wireless industry with experiences
@@ -78,7 +78,6 @@
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
-          <li class="tools__item spacer"></li>
         </ul>
 
         <h3 class="box__title">Back End</h3>
@@ -98,7 +97,6 @@
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
-          <li class="tools__item spacer"></li>
         </ul>
         <h3 class="box__title">Skills &#38; Tools</h3>
         <ul class="tools">
@@ -111,7 +109,6 @@
             />
             <p class="tools__name">{{ skill.node.name }}</p>
           </li>
-          <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
           <li class="tools__item spacer"></li>
@@ -188,11 +185,11 @@ export default {
 <style scoped>
 .about__body {
   font-size: 1.1rem;
-  line-height: 30px;
 }
 
 .about__emoji {
   text-align: center;
+  font-size: 1.5rem;
 }
 
 .tools {
@@ -209,24 +206,23 @@ export default {
 
 .tools__item {
   display: flex;
-  padding: 3px;
-
+  padding: 1px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1px 1px 15px 1px;
+  margin: 3px 1px 20px 1px;
   width: 100px;
-  flex-wrap: wrap;
+
   transition: all 0.2s ease-in-out;
 }
 
 .tools__name {
-  font-size: small;
+  font-weight: 600;
 }
 
 .tools__image {
   margin-right: 0.5rem;
-  width: 30px;
+  width: 50px;
   height: auto;
 }
 
@@ -235,6 +231,10 @@ export default {
 }
 
 @media screen and (min-width: 940px) {
+  .about__body {
+    font-size: 1.2rem;
+  }
+
   .tools__item {
     width: calc((100% / 6) - 2px);
   }

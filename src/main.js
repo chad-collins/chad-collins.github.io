@@ -7,12 +7,12 @@ import 'prismjs/themes/prism.css';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { config, library } from '@fortawesome/fontawesome-svg-core';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope, faSun } from '@fortawesome/free-regular-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 config.autoAddCss = false;
-library.add(faGithub, faLinkedin, faEnvelope);
+library.add(faGithub, faLinkedin, faEnvelope, faSun);
 
 export default function(Vue, { router, head, isClient }) {
   Vue.component('font-awesome', FontAwesomeIcon);

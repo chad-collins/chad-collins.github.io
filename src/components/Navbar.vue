@@ -48,7 +48,6 @@ $outer-margin: 1rem;
 }
 
 .branding {
-  display: inline-block;
   align-items: center;
   display: flex;
   width: max-content;
@@ -87,6 +86,7 @@ $outer-margin: 1rem;
 .nav__link {
   margin: 1rem 0 1rem 2rem;
   color: $background;
+  font-size: 1.1rem;
 }
 
 .burger {
@@ -101,10 +101,10 @@ $outer-margin: 1rem;
 }
 
 .burger__line {
-  width: 35px;
-  height: 5px;
-  background-color: black;
-  margin: 6px 0;
+  width: 20px;
+  height: 3px;
+  background-color: $light;
+
   transition: 0.4s;
 }
 

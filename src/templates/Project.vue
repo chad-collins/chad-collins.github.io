@@ -21,18 +21,24 @@
           <p v-html="$page.project.content" />
           <h2 v-if="$page.project.tools[1]" class="article__heading">Skills &#38; Tools</h2>
           <ul class="tools-list">
-            <li class="tool" v-for="tool in $page.project.tools" :key="tool.id">{{tool.name}}</li>
+            <li class="tool" v-for="tool in $page.project.tools" :key="tool.id">
+              <g-image
+                class="tool__image"
+                :src="require(`!!assets-loader?width=20!@images/${tool.image}`)"
+              />
+              {{tool.name}}
+            </li>
           </ul>
           <h2 v-if="$page.project.deployedLink" class="article__heading">See It Live</h2>
-          <a
-            v-if="$page.project.deployedLink"
-            :href="$page.project.deployedLink"
-          >{{$page.project.deployedLink}}</a>
+          <a v-if="$page.project.deployedLink" :href="$page.project.deployedLink">
+            <font-awesome class="icon" :icon="['far', 'sun']" />
+            {{$page.project.deployedLink}}
+          </a>
           <h2 v-if="$page.project.sourceCodeLink" class="article__heading">See The Code</h2>
-          <a
-            v-if="$page.project.sourceCodeLink"
-            :href="$page.project.sourceCodeLink"
-          >{{$page.project.sourceCodeLink}}</a>
+          <a v-if="$page.project.sourceCodeLink" :href="$page.project.sourceCodeLink">
+            <font-awesome class="icon" :icon="['fab', 'github']" />
+            {{$page.project.sourceCodeLink}}
+          </a>
         </article>
       </div>
     </section>
@@ -53,6 +59,7 @@ query ($id: ID!) {
     tools {
       id
       name
+      image
     }
   }
 
@@ -81,6 +88,10 @@ export default {
   max-width: 100%;
 }
 
+.icon {
+  margin-right: 5px;
+  font-size: 1.2rem;
+}
 .tools-list {
   display: flex;
   flex-wrap: wrap;
@@ -91,6 +102,7 @@ export default {
 
 .tool {
   display: flex;
+  align-items: center;
   margin: 0.3rem;
   background-color: $bodyText;
   color: $background;
@@ -98,6 +110,12 @@ export default {
   padding: 0.2rem 0.7rem;
   border-radius: 4px;
   font-weight: 700;
+}
+
+.tool__image {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }
 
 .breadcrumb {

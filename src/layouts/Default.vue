@@ -31,13 +31,13 @@ export default {
 };
 </script>
 
-<style lang="scss"sc>
+<style lang="scss">
 html,
 body {
   font-family: raleway, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
   font-style: normal;
-  line-height: 1.5;
+  line-height: 29px;
   max-width: 100vw;
   overflow-x: hidden;
   min-height: 100vh;
@@ -61,11 +61,12 @@ body {
 }
 
 .header__subtitle {
-  margin-bottom: 4rem;
+  margin: 0;
+
   font-weight: 200;
   font-size: small;
+  font-weight: 600;
   padding: 0;
-  margin: 0;
 }
 
 .footer {
