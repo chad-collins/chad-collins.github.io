@@ -118,11 +118,29 @@
     </section>
     <section class="section">
       <div class="container">
-        <h2 class="lined-heading">Ready to get in touch?</h2>
+        <h2 class="lined-heading">More</h2>
         <div class="container">
-          <g-link to="/contact/">
-            <button class="button">Contact</button>
-          </g-link>
+          <div class="buttons">
+            <g-link to="/contact/">
+              <button class="button button--full">Contact Me</button>
+            </g-link>
+            <g-link to="/projects/">
+              <button class="button button--full">View My Projects</button>
+            </g-link>
+            <g-link to="/resume/">
+              <button class="button button--full">My Resume</button>
+            </g-link>
+            <g-link to="http://github.com/chad-collins">
+              <button class="button button--full">
+                <font-awesome class="icon" :icon="['fab', 'github']" />Github
+              </button>
+            </g-link>
+            <g-link to="http://linkedin.com/in/chadacollins">
+              <button class="button button--full">
+                <font-awesome class="icon" :icon="['fab', 'linkedin']" />LinkedIn
+              </button>
+            </g-link>
+          </div>
         </div>
       </div>
     </section>
@@ -182,7 +200,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .about__body {
   font-size: 1.1rem;
 }
@@ -230,6 +248,19 @@ export default {
 
 .spacer {
   border: 0;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.button--full {
+  width: 100%;
+  height: 60px;
+}
+
+.icon {
+  margin-right: 5px;
 }
 
 @media screen and (min-width: 640px) {
