@@ -1,8 +1,8 @@
 ---
-title: "Java Blog Platform"
-subtitle: "Full Stack Blogging Platform Demo"
-sourceCodeLink: "https://github.com/chad-collins/masteryproject-blog"
-deployedLink: "http://covidtracker.chadcollins.net/"
+title: 'Java Blog Platform'
+subtitle: 'Full Stack Blogging Platform Demo'
+sourceCodeLink: 'https://github.com/chad-collins/masteryproject-blog'
+deployedLink: 'http://covidtracker.chadcollins.net'
 featuredImage: ./images/java-blog-platform.png
 tools:
   - java

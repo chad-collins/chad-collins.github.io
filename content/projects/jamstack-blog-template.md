@@ -1,8 +1,8 @@
 ---
-title: "Jamstack Blog Template"
-subtitle: "An official Gridsome Starter."
-sourceCodeLink: "http://github.com/chad-collins/gridsome-starter-netlifycms-buefy"
-deployedLink: https://gridsome-starter.chadcollins.net/
+title: 'Jamstack Blog Template'
+subtitle: 'An official Gridsome Starter.'
+sourceCodeLink: 'http://github.com/chad-collins/gridsome-starter-netlifycms-buefy'
+deployedLink: https://gridsome-starter.chadcollins.net
 featuredImage: ./images/jamstack-blog-template.png
 tools:
   - gridsome

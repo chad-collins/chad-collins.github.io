@@ -17,7 +17,9 @@
           &copy;2020. Built by
           <a href="http://linkedin.com/in/chadacollins">Chad Collins</a>
         </p>
-        <Logo />
+        <g-link to="/">
+          <Logo />
+        </g-link>
       </div>
     </main>
   </div>

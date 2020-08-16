@@ -1,6 +1,6 @@
 ---
-title: "Final Project: Pickup"
-subtitle: "Boot Camp final project. React, Java, Spring"
+title: 'Final Project: Pickup'
+subtitle: 'Boot Camp final project. React, Java, Spring'
 sourceCodeLink: https://github.com/dmf2990/pickup----react
 deployedLink:
 featuredImage: ./images/pickup.png
