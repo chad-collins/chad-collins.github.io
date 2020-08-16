@@ -42,6 +42,12 @@ module.exports = {
         },
       },
     },
+    {
+      use: '@gridsome/plugin-google-analytics',
+      options: {
+        id: 'UA-175548390-1',
+      },
+    },
   ],
   transformers: {
     //Add markdown support to all file-system sources
