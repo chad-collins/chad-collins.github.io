@@ -32,12 +32,12 @@
           <h2 v-if="$page.project.deployedLink" class="article__heading">See It Live</h2>
           <a v-if="$page.project.deployedLink" :href="$page.project.deployedLink">
             <font-awesome class="icon" :icon="['far', 'sun']" />
-            {{$page.project.deployedLink}}
+            {{$page.project.deployedLink.split("//")[1]}}
           </a>
           <h2 v-if="$page.project.sourceCodeLink" class="article__heading">See The Code</h2>
           <a v-if="$page.project.sourceCodeLink" :href="$page.project.sourceCodeLink">
             <font-awesome class="icon" :icon="['fab', 'github']" />
-            {{$page.project.sourceCodeLink}}
+            {{$page.project.sourceCodeLink.split("//")[1]}}
           </a>
         </article>
       </div>

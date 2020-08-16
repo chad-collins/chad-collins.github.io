@@ -53,12 +53,12 @@ body {
   box-sizing: border-box;
   text-align: center;
   margin-top: 2rem;
-  line-height: 40px;
+  line-height: 55px;
   margin-bottom: 10px;
 }
 
 .header__title {
-  font-size: 2rem;
+  font-size: 3rem;
   padding: 0;
   margin: 0;
 }

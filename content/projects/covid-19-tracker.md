@@ -1,8 +1,8 @@
 ---
-title: "Covid-19 Tracker"
-subtitle: "SPA using React that tracks the spread of Covid-19"
-sourceCodeLink: "https://github.com/chad-collins/react-covid-tracker/tree/master/public"
-deployedLink: "http://covidtracker.chadcollins.net/"
+title: 'Covid-19 Tracker'
+subtitle: 'SPA using React that tracks the spread of Covid-19'
+sourceCodeLink: 'https://github.com/chad-collins/react-covid-trackerpublic'
+deployedLink: 'http://covidtracker.chadcollins.net/'
 featuredImage: ./images/covid-19-tracker.png
 tools:
   - react

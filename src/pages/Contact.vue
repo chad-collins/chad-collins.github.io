@@ -9,13 +9,11 @@
           </p>
           <p>
             <font-awesome class="icon" :icon="['fab', 'linkedin']" />
-            <a
-              href="https://linkedin.com/in/chadacollins"
-            >&nbsp;&nbsp;https://linkedin.com/in/chadacollins</a>
+            <a href="https://linkedin.com/in/chadacollins">&nbsp;&nbsp;linkedin.com/in/chadacollins</a>
           </p>
           <p>
             <font-awesome class="icon" :icon="['fab', 'github']" />
-            <a href="https://github.com/chad-collins">https://github.com/chad-collins</a>
+            <a href="https://github.com/chad-collins">github.com/chad-collins</a>
           </p>
         </div>
 

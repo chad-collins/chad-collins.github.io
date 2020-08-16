@@ -232,14 +232,17 @@ export default {
   border: 0;
 }
 
+@media screen and (min-width: 640px) {
+  .tools__item {
+    width: calc((100% / 6) - 2px);
+  }
+}
+
 @media screen and (min-width: 940px) {
   .about__body {
     font-size: 1.2rem;
   }
 
-  .tools__item {
-    width: calc((100% / 6) - 2px);
-  }
   .tools__image {
     margin-right: 0.5rem;
     width: 50px;
