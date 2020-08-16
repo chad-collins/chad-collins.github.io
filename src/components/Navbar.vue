@@ -167,8 +167,9 @@ $outer-margin: 1rem;
     display: none;
   }
   .nav-links-right {
+    padding: 0;
     position: absolute;
-    top: 20px;
+    top: 27px;
     right: $outer-margin;
     border: none;
   }
