@@ -9,7 +9,7 @@
           </p>
           <p>
             <font-awesome class="icon" :icon="['fab', 'linkedin']" />
-            <a href="https://linkedin.com/in/chadacollins">&nbsp;&nbsp;linkedin.com/in/chadacollins</a>
+            <a href="https://linkedin.com/in/chadacollins">linkedin.com/in/chadacollins</a>
           </p>
           <p>
             <font-awesome class="icon" :icon="['fab', 'github']" />
