@@ -55,19 +55,18 @@ body {
   box-sizing: border-box;
   text-align: center;
   margin-top: 2rem;
-
   margin-bottom: 10px;
+  line-height: 55px;
 }
 
 .header__title {
-  line-height: 55px;
   font-size: 3rem;
   padding: 0;
   margin: 0;
 }
 
 .header__subtitle {
-  margin-top: 10px;
+  margin-top: 15px;
   font-weight: 200;
   font-size: 1rem;
   font-weight: 600;
@@ -93,6 +92,7 @@ body {
   .header {
     margin-top: 4.5rem;
     justify-content: center;
+    line-height: 75px;
   }
   .header__title {
     font-size: 4.5rem;
