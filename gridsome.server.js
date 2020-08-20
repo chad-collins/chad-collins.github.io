@@ -8,7 +8,7 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 
-const fileContents = fs.readFileSync('content/tech/tools.yml', 'utf8');
+const fileContents = fs.readFileSync('src/content/tech/tools.yml', 'utf8');
 const tools = yaml.safeLoad(fileContents);
 
 module.exports = function(api) {

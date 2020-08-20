@@ -26,26 +26,20 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'content/posts/**/*.md',
+        path: 'src/content/posts/**/*.md',
         typeName: 'Post',
       },
     },
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'content/projects/**/*.md',
+        path: 'src/content/projects/**/*.md',
         typeName: 'Project',
         refs: {
           tools: {
             typeName: 'Tools',
           },
         },
-      },
-    },
-    {
-      use: '@gridsome/plugin-google-analytics',
-      options: {
-        id: 'UA-175548390-1',
       },
     },
   ],
