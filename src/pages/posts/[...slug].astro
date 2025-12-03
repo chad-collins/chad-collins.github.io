@@ -1,0 +1,31 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+import PostHeader from '../../components/PostHeader.astro';
+
+export async function getStaticPaths() {
+	const posts = (await getCollection('posts')).filter(post => post.data.published === true);
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'posts'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+
+const section = post.data.type === 'blog' ? 'Blog' : 'Reviews';
+const sectionHref = post.data.type === 'blog' ? '/blog' : '/reviews';
+
+const breadcrumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: section, href: sectionHref },
+	{ label: post.data.title }
+];
+---
+
+<PostLayout {...post.data} breadcrumbs={breadcrumbs}>
+	<PostHeader {...post.data} />
+	<Content />
+</PostLayout>

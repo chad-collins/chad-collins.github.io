@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AlbumCard from '../components/AlbumCard.astro';
+import Hero from '../components/Hero.astro';
+
+const albums = (await getCollection('albums'))
+  .filter(album => album.data.published === true)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Group albums by category
+const albumsByCategory = albums.reduce((acc, album) => {
+  const category = album.data.category || 'Uncategorized';
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(album);
+  return acc;
+}, {} as Record<string, typeof albums>);
+
+const categories = Object.keys(albumsByCategory).sort();
+---
+
+<BaseLayout title="Photos" description="Photo albums and memories">
+  <Hero 
+		slot="hero"
+    title="Photos" 
+    description="Captured moments from life, travels, and adventures." 
+  />
+  
+	{categories.map((category) => (
+		<section class="category-section">
+			<h2 class="category-heading">{category}</h2>
+			<div class="albums-grid">
+				{albumsByCategory[category].map((album) => (
+					<AlbumCard
+						name={album.data.name}
+						coverImage={album.data.coverImage}
+						date={album.data.date}
+						description={album.data.description}
+						href={`/albums/${album.id.replace("/album", "")}/`}
+					/>
+				))}
+			</div>
+		</section>
+	))}
+</BaseLayout>
+
+<style>
+	.category-section {
+		margin-bottom: 3rem;
+	}
+
+	.category-heading {
+		font-size: 1.5rem;
+		margin-bottom: 1.5rem;
+		color: var(--text-color);
+		opacity: 0.7;
+	}
+
+	.albums-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 2rem;
+	}
+</style>

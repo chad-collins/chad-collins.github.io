@@ -1,0 +1,66 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import PostsListItem from "../../components/PostsListItem.astro";
+import PostsList from "../../components/PostsList.astro";
+import TagFilter from "../../components/TagFilter.astro";
+
+export async function getStaticPaths() {
+	const allPosts = await getCollection("posts");
+	const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
+
+	return allTags.map((tag) => ({
+		params: { tag },
+		props: {
+			items: allPosts
+				.filter((post) => post.data.published === true && post.data.tags.includes(tag))
+				.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+		},
+	}));
+}
+
+const { tag } = Astro.params;
+const { items } = Astro.props;
+
+const allPosts = (await getCollection("posts"))
+	.filter((post) => post.data.published === true);
+
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout title={`Content tagged "${tag}"`} description={`All content tagged with ${tag}`}>
+	<div class="content-layout">
+		<Hero title=`{ ${tag} }` description={`${items.length} item${items.length === 1 ? '' : 's'}`} />
+		<TagFilter tags={allTags} excludeTag={tag} />
+		<div class="posts-wrapper">
+			<PostsList>
+				{items.map((item) => (
+					<li class="list__item">
+						<PostsListItem
+							title={item.data.title}
+							pubDate={item.data.pubDate}
+							href={`/posts/${item.id}`}
+							tags={item.data.tags}
+							rating={item.data.rating}
+							artist={item.data.artist}
+							author={item.data.author}
+							director={item.data.director}
+							releaseYear={item.data.releaseYear}
+						/>
+					</li>
+				))}
+			</PostsList>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	.content-layout {
+		padding-bottom: 3rem;
+	}
+
+	.posts-wrapper {
+		margin-top: 2rem;
+	}
+</style>

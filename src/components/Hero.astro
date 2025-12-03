@@ -1,0 +1,24 @@
+---
+import { getTagColor } from '../utils/tags';
+
+interface Props {
+	title: string;
+	description: string;
+	colorTag?: string;
+}
+
+const { title, description, colorTag } = Astro.props;
+const titleColor = colorTag ? getTagColor(colorTag, false) : null;
+---
+
+<section id="hero">
+	<h1 style={titleColor ? `color: ${titleColor}` : undefined}>{title}</h1>
+	<p><strong set:html={description} /></p>
+</section>
+
+<style>
+	#hero {
+		padding-bottom: 1rem;
+		padding-top: 2rem;
+	}
+</style>

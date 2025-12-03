@@ -1,0 +1,244 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Lightbox from '../../components/Lightbox.astro';
+
+export async function getStaticPaths() {
+  const albums = await getCollection('albums');
+  return albums.map(album => {
+    // Extract directory name by removing /album from the id
+    const slug = album.id.replace('/album', '');
+    return {
+      params: { slug },
+      props: { album },
+    };
+  });
+}
+
+const { album } = Astro.props;
+
+// Extract the album directory name (remove /album from the id)
+const albumDir = album.id.replace('/album', '');
+
+// Get all images from the album directory
+const images = import.meta.glob('/src/content/albums/**/*.{jpg,jpeg,png,webp}', { eager: true });
+
+// Filter images that belong to this album
+const albumImages = Object.entries(images)
+  .filter(([path]) => path.includes(`/${albumDir}/`))
+  .filter(([path]) => !path.includes('cover.')) // Exclude cover image
+  .map(([path, module]: [string, any]) => ({
+    src: module.default,
+    path: path
+  }))
+  .sort((a, b) => a.path.localeCompare(b.path));
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Photos', href: '/albums' },
+  { label: album.data.name }
+];
+---
+
+<BaseLayout title={album.data.name} description={album.data.description} wide>
+  <Breadcrumbs crumbs={breadcrumbs} />
+  <Hero 
+    title={album.data.name} 
+    description={album.data.description}
+  />
+  
+  <div class="content">
+    <div class="album-details">
+      <time datetime={album.data.date.toISOString()}>
+        {album.data.date.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+    </div>
+    
+    <div class="album-content">
+      <div class="photo-gallery">
+        {albumImages.map((image, index) => (
+          <div class="photo-item">
+            <img 
+              src={image.src.src} 
+              alt="" 
+              loading="lazy"
+              width={image.src.width}
+              height={image.src.height}
+              data-index={index}
+              class="photo-thumbnail"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  
+  <Lightbox images={albumImages} />
+</BaseLayout>
+
+<script>
+  function layoutJustifiedGallery() {
+    const container = document.querySelector('.photo-gallery');
+    if (!container) return;
+    
+    const containerWidth = container.clientWidth;
+    const targetRowHeight = window.innerWidth < 768 ? 150 : 200;
+    const gap = window.innerWidth < 768 ? 2 : 4;
+    
+    let row = [];
+    let rowAspectRatio = 0;
+    
+    const items = Array.from(container.querySelectorAll('.photo-item'));
+    
+    items.forEach((item, index) => {
+      const img = item.querySelector('img');
+      if (!img || !img.naturalWidth) return;
+      
+      const ar = img.naturalWidth / img.naturalHeight;
+      row.push({ item, img, ar });
+      rowAspectRatio += ar;
+      
+      // Account for gaps between images
+      const totalGaps = gap * (row.length - 1);
+      const availableWidth = containerWidth - totalGaps;
+      const rowHeight = availableWidth / rowAspectRatio;
+      
+      // If this row is roughly the height we want, finalize it
+      if (rowHeight < targetRowHeight * 1.4) {
+        // Set sizes - subtract a tiny bit to prevent wrapping
+        let widthSum = 0;
+        row.forEach(({ item, img, ar }, i) => {
+          let width = Math.floor(rowHeight * ar * 100) / 100; // Round down to prevent overflow
+          
+          // For the last item in row, adjust to fill remaining space exactly
+          if (i === row.length - 1) {
+            width = availableWidth - widthSum;
+          }
+          
+          img.style.width = width + 'px';
+          img.style.height = Math.floor(rowHeight) + 'px';
+          item.classList.add('loaded');
+          
+          widthSum += width;
+        });
+        
+        // Reset
+        row = [];
+        rowAspectRatio = 0;
+      }
+    });
+    
+    // Handle remaining images in the last row
+    if (row.length > 0) {
+      const totalGaps = gap * (row.length - 1);
+      const availableWidth = containerWidth - totalGaps;
+      const rowHeight = availableWidth / rowAspectRatio;
+      
+      let widthSum = 0;
+      row.forEach(({ item, img, ar }, i) => {
+        let width = Math.floor(rowHeight * ar * 100) / 100;
+        
+        if (i === row.length - 1) {
+          width = availableWidth - widthSum;
+        }
+        
+        img.style.width = width + 'px';
+        img.style.height = Math.floor(rowHeight) + 'px';
+        item.classList.add('loaded');
+        
+        widthSum += width;
+      });
+    }
+  }
+  
+  function initGallery() {
+    const images = document.querySelectorAll('.photo-item img');
+    let loadedCount = 0;
+    
+    images.forEach((img) => {
+      if (img.complete && img.naturalWidth > 0) {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          layoutJustifiedGallery();
+        }
+      } else {
+        img.addEventListener('load', () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            layoutJustifiedGallery();
+          }
+        });
+      }
+    });
+    
+    // If all already loaded
+    if (loadedCount === images.length) {
+      layoutJustifiedGallery();
+    }
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGallery);
+  } else {
+    initGallery();
+  }
+  
+  window.addEventListener('resize', layoutJustifiedGallery);
+  document.addEventListener('astro:after-swap', initGallery);
+</script>
+
+<style>
+  .content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .album-details {
+    margin-bottom: 2rem;
+  }
+
+  .album-details time {
+    font-size: 0.95em;
+    color: rgb(var(--gray));
+  }
+
+  .album-content {
+    margin-top: 2rem;
+  }
+
+  .photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .photo-item {
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .photo-item.loaded {
+    opacity: 1;
+  }
+
+  .photo-item:hover {
+    opacity: 0.85;
+  }
+
+  .photo-item img {
+    display: block;
+    height: auto;
+    width: auto;
+  }
+
+  @media (max-width: 48rem) {
+    .photo-gallery {
+      gap: 2px;
+    }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import PostsListItem from "../components/PostsListItem.astro";
+import PostsList from "../components/PostsList.astro";
+import TagFilter from "../components/TagFilter.astro";
+
+const reviews = (await getCollection("posts"))
+	.filter((review) => review.data.published === true && review.data.type === 'review')
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const allTags = [
+	...new Set(reviews.flatMap((review) => review.data.tags)),
+].sort();
+
+// Group reviews by year
+const reviewsByYear = reviews.reduce((acc, review) => {
+	const year = review.data.pubDate.getFullYear();
+	if (!acc[year]) {
+		acc[year] = [];
+	}
+	acc[year].push(review);
+	return acc;
+}, {} as Record<number, typeof reviews>);
+
+const years = Object.keys(reviewsByYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<BaseLayout title="Reviews" description="My reviews of books, movies, albums, and more">
+	<Hero
+		slot="hero"
+		title="Reflections"
+		description=`These posts were originally called <i>Reviews</i>", which carried some... baggage. At best it implies that I'm an authority <i>(I'm not)</i>, or at worst, that I'm writing these for the sake of content creation 🤮. These entries are really just a way for me to form solid opinions and <i>reflect</i> on the things that I spend time with. 🫶`
+	/>
+
+	{years.map((year) => (
+		<section class="year-section">
+			<h2 class="year-heading">{year}</h2>
+			<PostsList>
+			{reviewsByYear[Number(year)].map((review) => (
+				<li class="list__item">
+					<PostsListItem
+						title={review.data.title}
+						tags={review.data.tags}
+						rating={review.data.rating}
+						artist={review.data.artist}
+						author={review.data.author}
+						director={review.data.director}
+						releaseYear={review.data.releaseYear}
+						pubDate={review.data.pubDate}
+						href={`/posts/${review.id}/`}
+					/>
+					</li>
+				))}
+			</PostsList>
+		</section>
+	))}
+	
+	<TagFilter slot="sidebar-right" tags={allTags} />
+</BaseLayout>
+
+<style>
+	.year-section {
+		margin-bottom: 3rem;
+	}
+
+	.year-heading {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: var(--text-color);
+		opacity: 0.7;
+	}
+</style>

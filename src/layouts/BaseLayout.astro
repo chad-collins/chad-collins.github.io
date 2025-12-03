@@ -1,0 +1,109 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+	title: string;
+	description?: string;
+	wide?: boolean;
+}
+
+const { title, description = '', wide = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<ClientRouter fallback="none" />
+	</head>
+	<body>
+		<div class="layout-container">
+			<aside class="sidebar-nav">
+				<Header transition:persist />
+			</aside>
+			<div class={`main-wrapper ${wide ? 'main-wrapper--wide' : ''}`}>
+				<div class="hero-section">
+					<slot name="hero" />
+				</div>
+				<main class="main-content">
+					<slot />
+				</main>
+				<Footer transition:persist />
+			</div>
+		</div>
+	</body>
+</html>
+
+<style>
+	.layout-container {
+		display: flex;
+		min-height: 100vh;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 3rem;
+	}
+
+	.sidebar-nav {
+		flex: 0 1 200px;
+		min-width: 200px;
+		max-width: 23vw;
+		padding-top: 1rem;
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		overflow-y: auto;
+	}
+
+	.main-wrapper {
+		flex: 1 1 600px;
+		min-width: 0;
+		max-width: 680px;
+		border-left: 1px solid var(--border-color);
+		padding-left: 5rem;
+		margin-left: 1.1rem;
+	}
+
+	.main-wrapper--wide {
+		max-width: none;
+		padding-right: 2rem;
+	}
+
+	.main-content {
+		width: 100%;
+		padding: 2rem 0 5rem;
+	}
+
+	@media (max-width: 968px) {
+		.layout-container {
+			flex-direction: column;
+			padding: 0;
+			gap: 0;
+		}
+		
+		.sidebar-nav {
+			position: static;
+			width: auto;
+			height: auto;
+			min-width: 0;
+			max-width: none;
+			padding: 0;
+			border: none;
+			background: none;
+		}
+		
+		.main-wrapper {
+			padding-top: 60px;
+			border-left: none;
+			padding-left: 0;
+			margin-left: 0;
+		}
+		
+	
+		.main-content {
+			padding: 1rem 1.5rem 3rem;
+		}
+	}
+</style>

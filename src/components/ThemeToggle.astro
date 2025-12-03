@@ -1,0 +1,88 @@
+---
+---
+
+<button id="theme-toggle" aria-label="Toggle theme">
+	<svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
+		<path d="M10 2V3M10 17V18M18 10H17M3 10H2M15.5 15.5L14.5 14.5M5.5 5.5L4.5 4.5M15.5 4.5L14.5 5.5M5.5 14.5L4.5 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+	</svg>
+	<svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M18 11.5C17.5 15.5 14 18 10 18C5.5 18 2 14.5 2 10C2 6 4.5 2.5 8.5 2C8 3 8 4.5 8.5 6C9.5 8.5 11.5 10.5 14 11.5C15.5 12 17 12 18 11.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+	</svg>
+</button>
+
+<script is:inline>
+	function handleToggleClick() {
+		const isDark = document.documentElement.classList.toggle('dark');
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+	}
+
+	function attachListeners() {
+		document.querySelectorAll('#theme-toggle').forEach(button => {
+			button.addEventListener('click', handleToggleClick);
+		});
+	}
+	
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', attachListeners);
+	} else {
+		attachListeners();
+	}
+
+	document.addEventListener('astro:after-swap', attachListeners);
+</script>
+
+<style>
+	#theme-toggle {
+		background: none;
+		border: none;
+		padding: 8px;
+		cursor: pointer;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: rgb(var(--gray));
+		transition: all 0.2s ease;
+		position: relative;
+	}
+
+	#theme-toggle:hover {
+		background-color: rgb(var(--gray-light));
+		color: rgb(var(--black));
+	}
+
+	#theme-toggle svg {
+		position: absolute;
+		transition: all 0.3s ease;
+	}
+
+	.sun-icon {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+
+	.moon-icon {
+		opacity: 0;
+		transform: rotate(90deg) scale(0.5);
+	}
+
+	:global(.dark) .sun-icon {
+		opacity: 0;
+		transform: rotate(-90deg) scale(0.5);
+	}
+
+	:global(.dark) .moon-icon {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+
+	@media (max-width: 768px) {
+		#theme-toggle {
+			width: 36px;
+			height: 36px;
+		}
+	}
+</style>

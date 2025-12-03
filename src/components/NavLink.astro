@@ -1,0 +1,78 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { getTagColor } from "../utils/tags";
+
+interface Props extends HTMLAttributes<"a"> {
+	variant?: "default" | "sidebar";
+}
+
+const { href, class: className, variant = "default", ...props } = Astro.props;
+const pathname = Astro.url.pathname;
+const isActive = href === pathname || href === "/" + pathname.split("/")[1];
+
+// Extract section from data-section prop if it exists
+const section = props["data-section"] as string | undefined;
+const sectionColor = section ? getTagColor(section, false) : null;
+---
+
+<a
+	href={href}
+	class:list={[variant, isActive ? "active" : "", className]}
+	style={sectionColor ? `--section-color: ${sectionColor}` : undefined}
+	{...props}
+>
+	<slot />
+</a>
+<style>
+	a.default {
+		display: inline-block;
+		text-decoration: none;
+		padding: 20px 16px;
+		color: rgb(var(--gray));
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.5;
+		transition: color 0.2s ease;
+	}
+
+	a.default:hover {
+		color: rgb(var(--black));
+	}
+
+	a.default.active {
+		color: rgb(var(--black));
+		font-weight: 500;
+	}
+
+	/* Section-specific colors */
+	a.default[data-section]:hover {
+		color: var(--section-color);
+	}
+
+	a.default[data-section].active {
+		color: var(--section-color);
+		font-weight: 500;
+	}
+	
+	/* Sidebar variant */
+	a.sidebar {
+		display: block;
+		padding: 0.375rem 0;
+		color: var(--text-color);
+		text-decoration: none;
+		transition: color 0.15s ease;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.5;
+	}
+	
+	a.sidebar:hover {
+		color: var(--accent);
+		text-decoration: none;
+	}
+	
+	a.sidebar.active {
+		color: var(--accent);
+		font-weight: 600;
+	}
+</style>

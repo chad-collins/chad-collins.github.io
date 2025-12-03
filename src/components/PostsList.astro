@@ -1,0 +1,38 @@
+---
+interface Props {
+	class?: string;
+	grid?: boolean;
+}
+
+const { class: className, grid = false } = Astro.props;
+---
+
+<ul class:list={['list', { 'list--grid': grid }, className]}>
+	<slot />
+</ul>
+
+<style is:global>
+	.list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	
+	.list--grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.5rem;
+		max-width: 100%;
+	}
+	
+	.list--grid .list__item {
+		min-width: 0;
+	}
+	
+	@media (max-width: 768px) {
+		.list--grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

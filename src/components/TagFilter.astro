@@ -1,0 +1,116 @@
+---
+import Tag from './Tag.astro';
+
+interface Props {
+	tags: string[];
+	excludeTag?: string;
+}
+
+const { tags, excludeTag } = Astro.props;
+const filterableTags = excludeTag ? tags.filter(tag => tag !== excludeTag) : tags;
+---
+
+<aside class="tag-filter" aria-label="Browse by tag">
+	<h3 class="tag-filter__label">Browse by tag</h3>
+	<nav class="tag-filter__buttons">
+		{filterableTags.map((tag) => (
+			<a 
+				class="tag-filter__link" 
+				href={`/tag/${tag}/`}
+			>
+				<Tag name={tag} />
+			</a>
+		))}
+	</nav>
+</aside>
+
+<style>
+	.tag-filter {
+		width: 100%;
+	}
+	
+	.tag-filter__label {
+		font-size: 0.875rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+		color: var(--h2-color);
+	}
+	
+	.tag-filter__buttons {
+		text-align: justify;
+		line-height: 2;
+	}
+	
+	.tag-filter__buttons::after {
+		content: '';
+		display: inline-block;
+		width: 100%;
+	}
+	
+	.tag-filter__link {
+		display: inline-block;
+		text-decoration: none;
+		transition: opacity 0.2s ease;
+		margin-bottom: 0.5rem;
+	}
+	
+	.tag-filter__link:hover :global(.tag) {
+		opacity: 0.8;
+	}
+	
+	/* Mobile: horizontal layout */
+	@media (max-width: 768px) {
+		.tag-filter {
+			position: static;
+			margin: 0 0 1.85rem 0;
+			padding: 1rem 0;
+			width: 100%;
+		}
+		
+		.tag-filter__label {
+			position: static;
+			width: auto;
+			height: auto;
+			padding: 0;
+			margin: 0 0.5rem 0 0;
+			overflow: visible;
+			clip: auto;
+			white-space: normal;
+			font-size: 0.75em;
+			color: rgb(var(--gray));
+			font-weight: 500;
+			display: inline;
+		}
+		
+		.tag-filter__buttons {
+			display: inline-flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			align-items: center;
+		}
+		
+		.tag-filter__button {
+			margin-bottom: 0;
+		}
+		
+		.tag-filter__button :global(.tag) {
+			margin-left: 0;
+		}
+		
+		.tag-filter__button:hover :global(.tag),
+		.tag-filter__button.active :global(.tag) {
+			transform: none;
+		}
+		
+		.tag-filter__button.active :global(.tag) {
+			text-decoration: underline;
+			text-decoration-thickness: 2px;
+			text-underline-offset: 3px;
+		}
+		
+		.tag-filter__button:hover {
+			opacity: 0.7;
+		}
+	}
+</style>

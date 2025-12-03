@@ -1,0 +1,65 @@
+---
+interface Props {
+  rating: number;
+  lightColor?: string;
+  darkColor?: string;
+}
+
+const { rating, lightColor = 'var(--accent)', darkColor = 'var(--accent)' } = Astro.props;
+---
+
+<div class="review-stars" style={`--star-light: ${lightColor}; --star-dark: ${darkColor};`}>
+  <div class="stars">
+    {[...Array(5)].map((_, i) => {
+      const diff = rating - i;
+      if (diff >= 1) {
+        return <span class="star full">★</span>;
+      } else if (diff >= 0.5) {
+        return <span class="star half">★</span>;
+      } else {
+        return <span class="star empty">★</span>;
+      }
+    })}
+  </div>
+  <span class="rating-value">{rating.toFixed(1)}</span>
+</div>
+
+<style>
+.review-stars {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stars {
+  display: flex;
+  gap: 2px;
+  font-size: 1em;
+}
+.star {
+  color: var(--star-light);
+}
+:global(.dark) .star {
+  color: var(--star-dark);
+}
+.star.half {
+  background: linear-gradient(90deg, var(--star-light) 50%, rgba(var(--gray), 0.4) 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+:global(.dark) .star.half {
+  background: linear-gradient(90deg, var(--star-dark) 50%, rgba(var(--gray), 0.4) 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.star.empty {
+  color: rgb(var(--gray));
+  opacity: 0.4;
+}
+.rating-value {
+  font-size: 0.9em;
+  color: rgb(var(--gray));
+  font-weight: 600;
+}
+</style>

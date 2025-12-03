@@ -1,0 +1,50 @@
+/* Charter - Body font */
+@font-face {
+  font-family: 'Charter';
+  src: url('/fonts/charter-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Charter';
+  src: url('/fonts/charter-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Charter';
+  src: url('/fonts/charter-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Charter';
+  src: url('/fonts/charter-bold-italic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Indie Flower - Handwritten headers */
+@font-face {
+  font-family: 'Indie Flower';
+  src: url('/fonts/indie-flower-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Permanent Marker - Bold handwritten headers */
+@font-face {
+  font-family: 'Permanent Marker';
+  src: url('/fonts/permanent-marker-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

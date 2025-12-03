@@ -1,0 +1,151 @@
+---
+import { Image } from "astro:assets";
+import FormattedDate from "./FormattedDate.astro";
+import ReviewStars from "./ReviewStars.astro";
+import Tag from "./Tag.astro";
+import { getTagColor } from "../utils/tags";
+
+interface Props {
+	title: string;
+	pubDate: Date;
+	tags?: string[];
+	type?: 'blog' | 'review';
+	// Review-specific props
+	reviewImage?: any;
+	rating?: number;
+	artist?: string;
+	author?: string;
+	director?: string;
+	releaseYear?: number;
+}
+
+const {
+	title,
+	pubDate,
+	tags,
+	type = 'blog',
+	reviewImage,
+	rating,
+	artist,
+	author,
+	director,
+	releaseYear,
+} = Astro.props;
+
+const isReview = type === 'review';
+const reviewType = tags?.find((tag) => tag !== "review") || tags?.[0];
+const tagLightColor = reviewType ? getTagColor(reviewType, false) : "";
+const tagDarkColor = reviewType ? getTagColor(reviewType, true) : "";
+---
+
+<header>
+	<h1>{title}</h1>
+	
+	{isReview && (
+		<div class="header-content">
+			{reviewImage && (
+				<Image
+					src={reviewImage}
+					alt={`Cover art for ${title}`}
+					class="review-image"
+				/>
+			)}
+			<div class="review-meta">
+				{(artist || author || director) && (
+					<p>
+						<small>{artist || author || director}</small>
+						{releaseYear && <small> • {releaseYear}</small>}
+					</p>
+				)}
+				{rating !== undefined && (
+					<div class="meta-rating">
+						<ReviewStars
+							rating={rating}
+							lightColor={tagLightColor}
+							darkColor={tagDarkColor}
+						/>
+					</div>
+				)}
+			</div>
+		</div>
+	)}
+	
+	<div class="meta">
+		<p class="pubdate">
+<FormattedDate date={pubDate} />
+		</p>
+		{tags && tags.length > 0 && (
+			<ul class="tags">
+				{tags.map((tag) => (
+					<li>
+						<Tag name={tag} />
+					</li>
+				))}
+			</ul>
+		)}
+	</div>
+</header>
+
+<style>
+	h1 {
+		margin-bottom: 0.5rem;
+	}
+
+	.header-content {
+		display: flex;
+		gap: 1.5rem;
+		align-items: flex-start;
+		margin-bottom: 1.5rem;
+	}
+
+	.review-image {
+		width: 120px;
+		height: auto;
+		flex-shrink: 0;
+	}
+
+	.review-meta {
+		flex: 1;
+	}
+
+	.review-meta p {
+		margin: 0;
+	}
+
+	.meta {
+		margin-top: 1rem;
+	}
+
+	.meta p {
+		margin: 0;
+	}
+
+	.pubdate {
+		font-style: italic;
+		font-size: 0.9rem;
+		color: var(--gray);
+	}
+
+	.meta-rating {
+		margin-top: 0.5rem;
+		font-size: 1.25rem;
+	}
+
+	.tags {
+		display: flex;
+		gap: 0.5rem;
+		margin-top: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 600px) {
+		.header-content {
+			flex-direction: column;
+		}
+
+		.review-image {
+			width: 100%;
+			max-width: 200px;
+		}
+	}
+</style>

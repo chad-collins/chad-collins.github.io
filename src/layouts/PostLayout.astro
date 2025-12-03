@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import Giscus from "../components/Giscus.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+type Props = CollectionEntry<"posts">["data"] & {
+	breadcrumbs?: Array<{ label: string; href?: string }>;
+};
+
+const { title, description, pubDate, tags, comments, breadcrumbs } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+	{breadcrumbs && <Breadcrumbs crumbs={breadcrumbs} />}
+	<article>
+		<slot />
+		{comments !== false && <Giscus />}
+	</article>
+</BaseLayout>
+
+<style>
+	.meta {
+		margin-bottom: 1rem;
+	}
+
+	.meta p {
+		margin: 0;
+	}
+
+	.header-content {
+		display: flex;
+		gap: 1rem;
+		align-items: flex-start;
+		margin-bottom: 1rem;
+	}
+
+	#tags {
+		display: flex;
+		gap: 0.5rem;
+		margin-bottom: 1rem;
+	}
+
+	#blog-content {
+		max-width: 42.5rem;
+		margin: 0 auto;
+	}
+
+	@media (max-width: 768px) {
+		#tags {
+			flex-wrap: wrap;
+		}
+	}
+</style>

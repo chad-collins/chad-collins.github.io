@@ -1,0 +1,45 @@
+---
+import { getTagColor } from '../utils/tags';
+
+interface Props {
+	name: string;
+	class?: string;
+	href?: string | false;
+}
+
+const { name, class: className, href } = Astro.props;
+const lightColor = getTagColor(name, false);
+const darkColor = getTagColor(name, true);
+const tagHref = typeof href === 'string' ? href : `/tag/${name}`;
+const Element = href === false ? 'span' : 'a';
+---
+
+<Element 
+	class:list={['tag', className]} 
+	data-tag={name}
+	style={`--tag-light: ${lightColor}; --tag-dark: ${darkColor};`}
+	href={Element === 'a' ? tagHref : undefined}
+>
+	{name}
+</Element>
+
+<style>
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--tag-light);
+    transition: all 0.2s ease;
+  }
+  
+  a.tag:hover {
+    opacity: 0.7;
+  }
+  
+  :global([data-theme='dark']) .tag {
+    color: var(--tag-dark);
+  }
+</style>

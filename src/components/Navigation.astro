@@ -1,0 +1,96 @@
+---
+import NavLink from './NavLink.astro';
+import { SITE_EMAIL } from '../consts';
+---
+
+<nav class="nav-section" aria-label="Primary navigation">
+	<h3>Content</h3>
+	<NavLink href="/blog" variant="sidebar"><span class="icon" aria-hidden="true">📝</span>Blog</NavLink>
+	<NavLink href="/reviews" variant="sidebar"><span class="icon" aria-hidden="true">⭐</span>Reflections</NavLink>
+	<NavLink href="/albums" variant="sidebar"><span class="icon" aria-hidden="true">📷</span>Photos</NavLink>
+	<NavLink href="/about" variant="sidebar"><span class="icon" aria-hidden="true">👤</span>About Me</NavLink>
+</nav>
+
+<nav class="nav-section" aria-label="Browse by tag">
+	<h3>Tags</h3>
+	<NavLink href="/tag/code" variant="sidebar"><span class="tag-dash" data-tag="code" aria-hidden="true">—</span>Code</NavLink>
+	<NavLink href="/tag/book" variant="sidebar"><span class="tag-dash" data-tag="book" aria-hidden="true">—</span>Books</NavLink>
+	<NavLink href="/tag/movie" variant="sidebar"><span class="tag-dash" data-tag="movie" aria-hidden="true">—</span>Movies</NavLink>
+	<NavLink href="/tag/show" variant="sidebar"><span class="tag-dash" data-tag="show" aria-hidden="true">—</span>Shows</NavLink>
+	<NavLink href="/tag/game" variant="sidebar"><span class="tag-dash" data-tag="game" aria-hidden="true">—</span>Games</NavLink>
+</nav>
+
+<nav class="nav-section" aria-label="External links">
+	<h3>Connect</h3>
+	<NavLink href="/rss.xml" variant="sidebar"><span class="icon" aria-hidden="true">📡</span>RSS</NavLink>
+	<NavLink href={`mailto:${SITE_EMAIL}`} variant="sidebar"><span class="icon" aria-hidden="true">✉️</span>Email</NavLink>
+</nav>
+
+<style>
+	.nav-section {
+		padding-bottom: 1.5rem;
+		margin-bottom: 1.5rem;
+		border-bottom: 1px solid var(--border-color);
+	}
+	
+	.nav-section:last-of-type {
+		border-bottom: none;
+	}
+	
+	.nav-section h3 {
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--gray);
+		margin: 0 0 0.75rem 0;
+	}
+	
+	.nav-section :global(a) {
+		display: block;
+		padding: 0.375rem 0;
+		color: var(--text-color);
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+	
+	.nav-section :global(a .icon) {
+		font-size: 0.75rem;
+		margin-right: 0.5rem;
+		opacity: 0.7;
+	}
+	
+	.nav-section :global(a .tag-dash) {
+		margin-right: 0.5rem;
+		font-weight: 700;
+	}
+	
+	.nav-section :global(a .tag-dash[data-tag="code"]) {
+		color: #3b82f6;
+	}
+	
+	.nav-section :global(a .tag-dash[data-tag="book"]) {
+		color: #8b5cf6;
+	}
+	
+	.nav-section :global(a .tag-dash[data-tag="movie"]) {
+		color: #ef4444;
+	}
+	
+	.nav-section :global(a .tag-dash[data-tag="show"]) {
+		color: #f59e0b;
+	}
+	
+	.nav-section :global(a .tag-dash[data-tag="game"]) {
+		color: #10b981;
+	}
+	
+	.nav-section :global(a:hover) {
+		color: var(--accent);
+		text-decoration: none;
+	}
+	
+	.nav-section :global(a.active) {
+		color: var(--accent);
+	}
+</style>
