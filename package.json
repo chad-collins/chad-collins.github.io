@@ -7,6 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "lint:css": "stylelint '**/*.{css,astro}'",
     "lint:css:fix": "stylelint '**/*.{css,astro}' --fix"
   },
@@ -18,7 +20,12 @@
     "sharp": "^0.34.3"
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^8.48.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-astro": "^1.5.0",
+    "postcss-html": "^1.8.0",
     "stylelint": "^16.26.1",
+    "stylelint-config-html": "^1.1.0",
     "stylelint-config-standard": "^39.0.1"
   }
 }
