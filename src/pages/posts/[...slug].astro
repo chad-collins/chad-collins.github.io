@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
-import PostHeader from '../../components/PostHeader.astro';
 
 export async function getStaticPaths() {
 	const posts = (await getCollection('posts')).filter(post => post.data.published === true);
@@ -26,6 +25,5 @@ const breadcrumbs = [
 ---
 
 <PostLayout {...post.data} breadcrumbs={breadcrumbs}>
-	<PostHeader {...post.data} />
 	<Content />
 </PostLayout>

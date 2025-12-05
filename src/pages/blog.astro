@@ -1,16 +1,13 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import PostsListItem from "../components/PostsListItem.astro";
 import PostsList from "../components/PostsList.astro";
 import TagFilter from "../components/TagFilter.astro";
+import { getBlogPosts, getAllTags } from "../utils/posts";
 
-const posts = (await getCollection("posts"))
-	.filter((post) => post.data.published === true && post.data.type === 'blog')
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+const posts = await getBlogPosts();
+const allTags = await getAllTags();
 ---
 
 <BaseLayout title="Blog" description="All blog posts">

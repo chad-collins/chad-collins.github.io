@@ -5,35 +5,30 @@ import PostsListItem from "../components/PostsListItem.astro";
 import PostsList from "../components/PostsList.astro";
 import ReviewCard from "../components/ReviewCard.astro";
 import Lightbox from "../components/Lightbox.astro";
+import Hero from "../components/Hero.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-import { Image } from "astro:assets";
 import logo from "../assets/bbgn.svg";
+import { getBlogPosts, getReviews } from "../utils/posts";
 
-const allPosts = await getCollection("posts");
-
-const posts = allPosts
-	.filter((post) => post.data.published === true && post.data.type === 'blog')
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 5);
-
-const reviews = allPosts
-	.filter((review) => review.data.published === true && review.data.type === 'review')
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 3);
+const posts = await getBlogPosts(5);
+const reviews = await getReviews(3);
 
 const albums = await getCollection("albums");
 
 // Get all images from all albums
-const images = import.meta.glob('/src/content/albums/**/*.{jpg,jpeg,png,webp}', { eager: true });
+const images = import.meta.glob(
+	"/src/content/albums/**/*.{jpg,jpeg,png,webp}",
+	{ eager: true },
+);
 
 // Get photos from published albums
 const allPhotos = albums
-	.filter(album => album.data.published === true)
-	.flatMap(album => {
-		const albumDir = album.id.replace('/album', '');
+	.filter((album) => album.data.published === true)
+	.flatMap((album) => {
+		const albumDir = album.id.replace("/album", "");
 		const albumImages = Object.entries(images)
 			.filter(([path]) => path.includes(`/${albumDir}/`))
-			.filter(([path]) => !path.includes('cover.'))
+			.filter(([path]) => !path.includes("cover."))
 			.map(([path, module]: [string, any]) => ({
 				src: module.default,
 				albumName: album.data.name,
@@ -47,121 +42,85 @@ const allPhotos = albums
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<div class="hero">
-		<div class="hero-content">
-			<h1>Hi, I'm Chad</h1>
-			<p><strong>I'm a software developer from Ohio. I post about whatever interests me, including media, life, code, and different projects. Read more <a href='/about'>about me</a>.</strong></p>
-		</div>
-		<div class="hero-logo">
-			<Image src={logo} alt="BBGN Logo" width={150} height={150} />
-		</div>
-	</div>
+	<Hero
+		slot="hero"
+		title="Hi, I'm Chad"
+		description="I'm a software developer from Ohio. I post about whatever interests me, including media, life, code, and different projects. Read more <a href='/about'>about me</a>."
+		logo={logo}
+		logoAlt="BBGN Logo"
+	/>
 
-	<div>
-		<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-			<h2 style="margin: 0;">Latest Posts</h2>
-			<a href="/blog" style="font-size: 0.875rem;">View all →</a>
-		</div>
-		<PostsList>
-			{posts.map((post) => (
-				<li class="list__item">
-					<PostsListItem
-						title={post.data.title}
-						description={post.data.description}
-						pubDate={post.data.pubDate}
-						tags={post.data.tags}
-						href={`/posts/${post.id}/`}
-					/>
-				</li>
-			))}
-		</PostsList>
-	</div>
-	
-	{reviews.length > 0 && (
-		<div style="margin-top: 3rem;">
-			<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-				<h2 style="margin: 0;">Latest Reviews</h2>
-				<a href="/reviews" style="font-size: 0.875rem;">View all →</a>
-			</div>
-			<PostsList grid>
-				{reviews.map((review) => (
+	<section>
+		<PostsList title="Latest Posts" viewAllHref="/blog">
+			{
+				posts.map((post) => (
 					<li class="list__item">
-						<ReviewCard
-							title={review.data.title}
-							reviewImage={review.data.reviewImage}
-							tags={review.data.tags}
-							rating={review.data.rating}
-							artist={review.data.artist}
-							author={review.data.author}
-							director={review.data.director}
-							releaseYear={review.data.releaseYear}
-							pubDate={review.data.pubDate}
-							href={`/posts/${review.id}/`}
+						<PostsListItem
+							title={post.data.title}
+							description={post.data.description}
+							pubDate={post.data.pubDate}
+							tags={post.data.tags}
+							href={`/posts/${post.id}/`}
 						/>
 					</li>
-				))}
-			</PostsList>
-		</div>
-	)}
-
-	{allPhotos.length > 0 && (
-		<div style="margin-top: 3rem;">
-			<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-				<h2 style="margin: 0;">Latest Photos</h2>
-				<a href="/albums" style="font-size: 0.875rem;">View albums →</a>
-			</div>
-			<div class="photos-grid">
-				{allPhotos.map((photo, index) => (
-					<div class="photo-item">
-						<img 
-							src={photo.src.src} 
-							alt={photo.albumName}
-							class="photo-thumbnail"
-							loading="lazy"
-							width={photo.src.width}
-							height={photo.src.height}
-							data-index={index}
-						/>
+				))
+			}
+		</PostsList>
+	</section>
+	<section>
+		{
+			reviews.length > 0 && (
+				<PostsList grid title="Latest Reviews" viewAllHref="/reviews">
+					{reviews.map((review) => (
+						<li class="list__item">
+							<ReviewCard
+								title={review.data.title}
+								reviewImage={review.data.reviewImage}
+								tags={review.data.tags}
+								rating={review.data.rating}
+								creator={review.data.creator}
+								releaseYear={review.data.releaseYear}
+								pubDate={review.data.pubDate}
+								href={`/posts/${review.id}/`}
+							/>
+						</li>
+					))}
+				</PostsList>
+			)
+		}
+	</section>
+	<section>
+		{
+			allPhotos.length > 0 && (
+					<div class="list-header">
+						<h2>Latest Photos</h2>
+						<a href="/albums">View albums →</a>
 					</div>
-				))}
-			</div>
-		</div>
-	)}
+					<div class="photos-grid">
+						{allPhotos.map((photo, index) => (
+							<div class="photo-item">
+								<img
+									src={photo.src.src}
+									alt={photo.albumName}
+									class="photo-thumbnail"
+									loading="lazy"
+									width={photo.src.width}
+									height={photo.src.height}
+									data-index={index}
+								/>
+							</div>
+						))}
+					</div>
+			)
+		}
 
-	<Lightbox images={allPhotos} />
+		<Lightbox images={allPhotos} />
+	</section>
 </BaseLayout>
 
 <style>
-	.hero {
-		display: flex;
-		align-items: center;
-		gap: 3rem;
-		margin-bottom: 3rem;
-		padding: 2rem 0;
-	}
-	
-	.hero-content {
-		flex: 1;
-	}
-	
-	.hero-content h1 {
-		margin-top: 0;
-		margin-bottom: 0.5rem;
-	}
-	
-	.hero-content p {
-		font-size: 1.125rem;
-		margin: 0;
-		color: var(--text-color);
-		opacity: 0.9;
-	}
-	
-	.hero-logo {
-		flex-shrink: 0;
-	}
-	
-	.hero-logo img {
-		display: block;
+	section {
+		margin-top: 3rem;
 	}
 
 	.photos-grid {
@@ -188,14 +147,8 @@ const allPhotos = albums
 		display: block;
 		cursor: pointer;
 	}
-	
-	@media (max-width: 768px) {
-		.hero {
-			flex-direction: column;
-			text-align: center;
-			gap: 2rem;
-		}
 
+	@media (max-width: 768px) {
 		.photos-grid {
 			grid-template-columns: repeat(2, 1fr);
 		}

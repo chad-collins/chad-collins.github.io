@@ -1,7 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import FormattedDate from './FormattedDate.astro';
-import Tag from './Tag.astro';
 import ReviewStars from './ReviewStars.astro';
 import { getTagColor } from '../utils/tags';
 
@@ -10,9 +8,7 @@ interface Props {
 	reviewImage?: any;
 	tags?: string[];
 	rating?: number;
-	artist?: string;
-	author?: string;
-	director?: string;
+	creator?: string;
 	releaseYear?: number;
 	pubDate: Date;
 	href?: string;
@@ -23,12 +19,10 @@ const {
 	title, 
 	reviewImage, 
 	tags = [], 
-	rating, 
-	artist, 
-	author, 
-	director, 
+	rating, 	
+	creator, 
 	releaseYear, 
-	pubDate,
+	pubDate,		
 	href,
 	isSticky = false 
 } = Astro.props;
@@ -36,11 +30,23 @@ const {
 const reviewType = tags.find(tag => tag !== 'review') || tags[0];
 const tagLightColor = reviewType ? getTagColor(reviewType, false) : '';
 const tagDarkColor = reviewType ? getTagColor(reviewType, true) : '';
-const Element = href ? 'a' : 'div';
 ---
 
-<Element class={`review-card ${isSticky ? 'sticky' : ''}`} href={href} style={`--card-bg: color-mix(in srgb, ${tagLightColor} 8%, transparent); --card-bg-hover: color-mix(in srgb, ${tagLightColor} 16%, transparent); --tag-border: ${tagLightColor}; --tag-border-dark: ${tagDarkColor};`}>
-	{reviewImage && (
+<div class={`review-card ${isSticky ? 'sticky' : ''}`} style={`--card-bg: color-mix(in srgb, ${tagLightColor} 8%, transparent); --card-bg-hover: color-mix(in srgb, ${tagLightColor} 16%, transparent); --tag-border: ${tagLightColor}; --tag-border-dark: ${tagDarkColor};`}>
+	{reviewImage && href && (
+		<a href={href} class="review-card__image-link">
+			<div class="review-card__image">
+				<Image 
+					src={reviewImage} 
+					alt={`Cover art for ${title}`}
+					width={400}
+					height={200}
+					class="review-card__image-img"
+				/>
+			</div>
+		</a>
+	)}
+	{reviewImage && !href && (
 		<div class="review-card__image">
 			<Image 
 				src={reviewImage} 
@@ -53,12 +59,18 @@ const Element = href ? 'a' : 'div';
 	)}
 	<div class="review-card__content">
 		<div class="review-card__header">
-			<h3 class="review-card__title">{title}</h3>
+			{href ? (
+				<a href={href} class="review-card__title-link">
+					<h3 class="review-card__title">{title}</h3>
+				</a>
+			) : (
+				<h3 class="review-card__title">{title}</h3>
+			)}
 		</div>
-		{(artist || author || director) && (
+		{creator && (
 			<p class="review-card__creator">
 				<small>
-					{artist || author || director}
+					{creator}
 					{releaseYear && <span class="review-card__year"> • {releaseYear}</span>}
 				</small>
 			</p>
@@ -78,7 +90,7 @@ const Element = href ? 'a' : 'div';
 			</div>
 		</div>
 	)}
-</Element>
+</div>
 
 <style>
 	/* Card container */
@@ -93,12 +105,32 @@ const Element = href ? 'a' : 'div';
 		background-color: none;
 	}
 	
-	a.review-card {
-		transition: background-color 0.15s ease;
+	.review-card__image-link {
+		display: block;
+		text-decoration: none;
+		width: fit-content;
+		margin: 0 auto;
 	}
 	
-	a.review-card:hover {
-		background-color: var(--card-bg-hover);
+	.review-card__image-link:hover .review-card__image {
+		opacity: 0.85;
+		transition: opacity 0.15s ease;
+	}
+	
+	.review-card__title-link {
+		text-decoration: none;
+		color: inherit;
+		width: fit-content;
+		display: block;
+		margin: 0 auto;
+	}
+	
+	.review-card__title-link:hover .review-card__title {
+		color: rgb(var(--tag-border);
+	}
+	
+	:global(.dark) .review-card__title-link:hover .review-card__title {
+		color: rgb(var(--tag-border-dark);
 	}
 	
 	.review-card.sticky {
@@ -107,7 +139,7 @@ const Element = href ? 'a' : 'div';
 	}
 	
 	:global(.dark) .review-card {
-		border-color: var(--tag-border-dark);
+		border-color: rgb(var(--tag-border-dark);
 	}
 	
 	/* Image */
@@ -152,12 +184,12 @@ const Element = href ? 'a' : 'div';
 		font-size: 0.6em;
 		letter-spacing: 0.06em;
 		font-weight: 500;
-		color: var(--tag-light);
+		color: rgb(var(--tag-light);
 		margin: 0 0.5rem;
 	}
 	
 	:global(.dark) .review-card__tag {
-		color: var(--tag-dark);
+		color: rgb(var(--tag-dark);
 	}
 	
 	.review-card__creator {
@@ -176,6 +208,7 @@ const Element = href ? 'a' : 'div';
 	.review-card__rating {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		gap: 0.5rem;
 	}
 	
@@ -194,12 +227,12 @@ const Element = href ? 'a' : 'div';
 	
 	.review-card__separator {
 		flex: 1;
-		border-bottom: 1px solid var(--tag-light);
+		border-bottom: 1px solid rgb(var(--tag-light);
 		
 	}
 	
 	:global(.dark) .review-card__separator {
-		border-color: var(--tag-dark);
+		border-color: rgb(var(--tag-dark);
 	}
 	
 

@@ -1,8 +1,6 @@
 ---
-import FormattedDate from './FormattedDate.astro';
-import Tag from './Tag.astro';
-import ReviewStars from './ReviewStars.astro';
-import { getTagColor } from '../utils/tags';
+import FormattedDate from "./FormattedDate.astro";
+import Tag from "./Tag.astro";
 
 interface Props {
 	title: string;
@@ -12,142 +10,46 @@ interface Props {
 	href: string;
 	// Review-specific fields
 	rating?: number;
-	artist?: string;
-	author?: string;
-	director?: string;
+	creator?: string;
 	releaseYear?: number;
 }
 
-const { title, pubDate, href, tags = [], rating, artist, author, director, releaseYear } = Astro.props;
-const isReview = rating !== undefined || artist || author || director;
-const attribution = artist || author || director;
-const reviewType = isReview ? tags.find(tag => tag !== 'review') : null;
-const primaryTag = reviewType || tags[0];
-const tagLightColor = primaryTag ? getTagColor(primaryTag, false) : '';
-const tagDarkColor = primaryTag ? getTagColor(primaryTag, true) : '';
+const { title, pubDate, href, tags = [] } = Astro.props;
+const primaryTag = tags[0];
 ---
 
 <a href={href} class="post-list-item">
-	<div class="post-list-details">
-		{primaryTag && <Tag name={primaryTag} class="list-tag" href={false} />}
-		<span class="post-list-item__title" style={`--title-hover-light: ${tagLightColor}; --title-hover-dark: ${tagDarkColor};`}>
-			{title}
-		</span>
-		{isReview && attribution && (
-			<span class="post-list-meta">
-				{attribution}
-				{releaseYear && ` • ${releaseYear}`}
-			</span>
-		)}
-	</div>
-	{isReview && rating !== undefined ? (
-		<div class="post-list-stars">
-			<ReviewStars rating={rating} lightColor={tagLightColor} darkColor={tagDarkColor} />
-		</div>
-	) : (
-		<time class="post-list-item__date" datetime={pubDate.toISOString()}>
-			<FormattedDate date={pubDate} />
-		</time>
-	)}
+	{primaryTag && <Tag name={primaryTag} href={false} />}
+	<h3 class="post-title">{title}</h3>
+	<small class="post-date"><FormattedDate date={pubDate} /></small>
 </a>
 
-<style is:global>
-	.list__item {
-		border-bottom: 1px solid var(--border-color);
-		transition: background-color 0.15s ease;
-		display: block;
-		width: 100%;
-	}
-	
-	.list__item:hover {
-		background-color: var(--bg-secondary);
-	}
-	
-	.list__item:last-child {
-		border-bottom: none;
-	}
-	
-	.list--grid .list__item {
-		border-bottom: none;
-	}
-	
-	.list--grid .list__item:hover {
-		background-color: transparent;
-	}
-	
+<style>
 	.post-list-item {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		flex-direction: column;
 		padding: 1rem 0;
-		color: inherit;
-		text-decoration: none;
-		gap: 1.5rem;
-		flex-wrap: nowrap;
-		width: 100%;
-		min-width: 0;
-	}
-	
-	.post-list-item:hover {
-		text-decoration: none;
-	}
-	
-	.post-list-item:hover .post-list-item__title {
-		color: var(--title-hover-light);
-	}
-	
-	:global(.dark) .post-list-item:hover .post-list-item__title {
-		color: var(--title-hover-dark);
-	}
-	
-	.post-list-details {
-		flex: 1;
-		min-width: 0;
-		overflow: hidden;
-	}
-	
-	.post-list-item__title {
-		font-size: 1.25rem;
-		font-weight: 600;
-		color: rgb(var(--black));
-		display: inline;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-	
-	.post-list-meta {
-		font-size: 1rem;
-		color: rgb(var(--gray));
-		display: inline;
-	}
-	
-	.post-list-meta::before {
-		content: ' — ';
-	}
-	
-	.post-list-item__date {
-		flex-shrink: 0;
-		font-size: 0.875rem;
-		color: var(--gray);
-		white-space: nowrap;
-		min-width: max-content;
-	}
-	
-	.post-list-stars {
-		display: flex;
-		align-items: center;
+		border-bottom: 1px solid rgba(var(--gray), 0.2);
 		gap: 0.25rem;
-		flex-shrink: 0;
-		font-size: 1rem;
-		white-space: nowrap;
-		min-width: max-content;
 	}
 	
-	.post-list-item .list-tag {
-		background: none;
-		border: none;
-		padding: 0;
-		margin-right: 0.5rem;
-		font-size: 1rem;
+	.post-list-item h3 {
+		margin: 0;
+	}
+	
+	.post-list-item small {
+		color: rgb(var(--gray));
+	}
+	
+	@media (min-width: 768px) {
+		.post-list-item {
+			flex-direction: row;
+			align-items: baseline;
+			gap: 0.75rem;
+		}
+		
+		.post-list-item small {
+			margin-left: auto;
+		}
 	}
 </style>

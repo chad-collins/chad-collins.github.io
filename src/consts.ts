@@ -4,3 +4,4 @@
 export const SITE_TITLE = 'chadcollins.dev';
 export const SITE_DESCRIPTION = 'My thoughts, ideas, and stories.';
 export const SITE_EMAIL = 'me@chadcollins.dev';
+export const REPO = 'chad-collins/chad-collins.github.io';

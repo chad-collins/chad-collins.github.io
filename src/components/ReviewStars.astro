@@ -5,7 +5,7 @@ interface Props {
   darkColor?: string;
 }
 
-const { rating, lightColor = 'var(--accent)', darkColor = 'var(--accent)' } = Astro.props;
+const { rating, lightColor = 'rgb(var(--accent))', darkColor = 'rgb(var(--accent))' } = Astro.props;
 ---
 
 <div class="review-stars" style={`--star-light: ${lightColor}; --star-dark: ${darkColor};`}>
@@ -36,19 +36,19 @@ const { rating, lightColor = 'var(--accent)', darkColor = 'var(--accent)' } = As
   font-size: 1em;
 }
 .star {
-  color: var(--star-light);
+  color: rgb(var(--star-light);
 }
 :global(.dark) .star {
-  color: var(--star-dark);
+  color: rgb(var(--star-dark);
 }
 .star.half {
-  background: linear-gradient(90deg, var(--star-light) 50%, rgba(var(--gray), 0.4) 50%);
+  background: linear-gradient(90deg, rgb(var(--star-light) 50%, rgba(var(--gray), 0.4) 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 :global(.dark) .star.half {
-  background: linear-gradient(90deg, var(--star-dark) 50%, rgba(var(--gray), 0.4) 50%);
+  background: linear-gradient(90deg, rgb(var(--star-dark) 50%, rgba(var(--gray), 0.4) 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

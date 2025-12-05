@@ -1,22 +1,16 @@
 ---
-// Utterances.astro
-// Astro component to embed Utterances comments
-const {
-  repo = "chad-collins/chad-collins.github.io",
-  issueTerm = "pathname",
-  label = "",
-  theme = "github-light"
-} = Astro.props;
+// CommentSection component using Utterances
+import { REPO } from "../consts";
 ---
 
 <div id="utterances-comments"></div>
 
-<script is:inline>
+<script is:inline define:vars={{ REPO }}>
   // Initialize Utterances
   function loadUtterances() {
     const script = document.createElement('script');
     script.src = 'https://utteranc.es/client.js';
-    script.setAttribute('repo', 'chad-collins/chad-collins.github.io');
+    script.setAttribute('repo', REPO);
     script.setAttribute('issue-term', 'pathname');
     script.setAttribute('label', 'comments');
     

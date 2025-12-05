@@ -1,6 +1,9 @@
 ---
 import NavLink from './NavLink.astro';
 import { SITE_EMAIL } from '../consts';
+import { getTagColor } from '../utils/tags';
+
+const tags = ['code', 'book', 'movie', 'show', 'game'];
 ---
 
 <nav class="nav-section" aria-label="Primary navigation">
@@ -13,11 +16,11 @@ import { SITE_EMAIL } from '../consts';
 
 <nav class="nav-section" aria-label="Browse by tag">
 	<h3>Tags</h3>
-	<NavLink href="/tag/code" variant="sidebar"><span class="tag-dash" data-tag="code" aria-hidden="true">—</span>Code</NavLink>
-	<NavLink href="/tag/book" variant="sidebar"><span class="tag-dash" data-tag="book" aria-hidden="true">—</span>Books</NavLink>
-	<NavLink href="/tag/movie" variant="sidebar"><span class="tag-dash" data-tag="movie" aria-hidden="true">—</span>Movies</NavLink>
-	<NavLink href="/tag/show" variant="sidebar"><span class="tag-dash" data-tag="show" aria-hidden="true">—</span>Shows</NavLink>
-	<NavLink href="/tag/game" variant="sidebar"><span class="tag-dash" data-tag="game" aria-hidden="true">—</span>Games</NavLink>
+	<NavLink href="/tag/code" variant="sidebar"><span class="tag-dash" style={`color: ${getTagColor('code')}`} aria-hidden="true">—</span>Code</NavLink>
+	<NavLink href="/tag/book" variant="sidebar"><span class="tag-dash" style={`color: ${getTagColor('book')}`} aria-hidden="true">—</span>Books</NavLink>
+	<NavLink href="/tag/movie" variant="sidebar"><span class="tag-dash" style={`color: ${getTagColor('movie')}`} aria-hidden="true">—</span>Movies</NavLink>
+	<NavLink href="/tag/show" variant="sidebar"><span class="tag-dash" style={`color: ${getTagColor('show')}`} aria-hidden="true">—</span>Shows</NavLink>
+	<NavLink href="/tag/game" variant="sidebar"><span class="tag-dash" style={`color: ${getTagColor('game')}`} aria-hidden="true">—</span>Games</NavLink>
 </nav>
 
 <nav class="nav-section" aria-label="External links">
@@ -30,7 +33,7 @@ import { SITE_EMAIL } from '../consts';
 	.nav-section {
 		padding-bottom: 1.5rem;
 		margin-bottom: 1.5rem;
-		border-bottom: 1px solid var(--border-color);
+		border-bottom: 1px solid rgb(var(--border-color));
 	}
 	
 	.nav-section:last-of-type {
@@ -42,14 +45,14 @@ import { SITE_EMAIL } from '../consts';
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
-		color: var(--gray);
+		color: rgb(var(--gray));
 		margin: 0 0 0.75rem 0;
 	}
 	
 	.nav-section :global(a) {
 		display: block;
 		padding: 0.375rem 0;
-		color: var(--text-color);
+		color: rgb(var(--text-color));
 		text-decoration: none;
 		transition: color 0.15s ease;
 	}
@@ -65,32 +68,12 @@ import { SITE_EMAIL } from '../consts';
 		font-weight: 700;
 	}
 	
-	.nav-section :global(a .tag-dash[data-tag="code"]) {
-		color: #3b82f6;
-	}
-	
-	.nav-section :global(a .tag-dash[data-tag="book"]) {
-		color: #8b5cf6;
-	}
-	
-	.nav-section :global(a .tag-dash[data-tag="movie"]) {
-		color: #ef4444;
-	}
-	
-	.nav-section :global(a .tag-dash[data-tag="show"]) {
-		color: #f59e0b;
-	}
-	
-	.nav-section :global(a .tag-dash[data-tag="game"]) {
-		color: #10b981;
-	}
-	
 	.nav-section :global(a:hover) {
-		color: var(--accent);
+		color: rgb(var(--accent));
 		text-decoration: none;
 	}
 	
 	.nav-section :global(a.active) {
-		color: var(--accent);
+		color: rgb(var(--accent));
 	}
 </style>

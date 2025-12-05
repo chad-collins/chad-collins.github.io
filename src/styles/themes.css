@@ -1,45 +1,29 @@
 :root {
-	--accent: #2563eb;
-	--accent-dark: #1d4ed8;
-	--black: 31, 41, 55;
-	--gray: 107, 114, 128;
-	--gray-light: 249, 250, 251;
-	--gray-dark: 75, 85, 99;
-	--box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-	--border-color: #d4d4d0;
-	--bg-color: #e8e6e1;
-	--bg-secondary: #dedad5;
-	--text-color: #2d2d2a;
-	--h1-color: #1a1a18;
-	--h2-color: #2563eb;
-	--accent-color: #2563eb;
-	--link-color: #2563eb;
+  --accent: 255, 111, 97;
+  --accent-dark: 217, 76, 61;
+  --black: 34, 34, 34;
+  --gray: 102, 102, 102;
+  --gray-light: 245, 245, 240;
+  --gray-dark: 230, 230, 225;
+  --box-shadow: 34, 34, 34;
+  --border-color: 200, 200, 195;
+  --bg-color: 245, 245, 240;
+  --bg-secondary: 230, 230, 225;
+  --text-color: 34, 34, 34;
+  --link-color: 255, 111, 97;
 }
 
 :root.dark {
-	--accent: #60a5fa;
-	--accent-dark: #3b82f6;
-	--black: 209, 213, 219;
-	--gray: 156, 163, 175;
-	--gray-light: 31, 41, 55;
-	--gray-dark: 107, 114, 128;
-	--box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-	--border-color: #2d3338;
-	--bg-color: #181b1f;
-	--bg-secondary: #0f1215;
-	--text-color: #d1d5db;
-	--h1-color: #e5e7eb;
-	--h2-color: #60a5fa;
-	--accent-color: #60a5fa;
-	--link-color: #60a5fa;
-}
-
-body {
-	background: var(--bg-color) url('/wallpaper-light.webp') center/cover fixed;
-	color: rgb(var(--black));
-	transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-:root.dark body {
-	background-image: url('/wallpaper-dark.webp');
+  --accent: 255, 111, 97;
+  --accent-dark: 217, 76, 61;
+  --black: 230, 230, 225;
+  --gray: 170, 170, 170;
+  --gray-light: 24, 24, 28;
+  --gray-dark: 38, 38, 42;
+  --box-shadow: 230, 230, 225;
+  --border-color: 60, 60, 65;
+  --bg-color: 24, 24, 28;
+  --bg-secondary: 38, 38, 42;
+  --text-color: 230, 230, 225;
+  --link-color: 255, 111, 97;
 }

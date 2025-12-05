@@ -1,24 +1,91 @@
 ---
 import { getTagColor } from '../utils/tags';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
 	title: string;
 	description: string;
 	colorTag?: string;
+	logo?: ImageMetadata;
+	logoAlt?: string;
 }
 
-const { title, description, colorTag } = Astro.props;
+const { title, description, colorTag, logo, logoAlt = 'Logo' } = Astro.props;
 const titleColor = colorTag ? getTagColor(colorTag, false) : null;
 ---
 
-<section id="hero">
-	<h1 style={titleColor ? `color: ${titleColor}` : undefined}>{title}</h1>
-	<p><strong set:html={description} /></p>
+<section id="hero" class:list={['hero', { 'hero--with-logo': logo }]}>
+	<div class="hero-content">
+		<h1 style={titleColor ? `color: ${titleColor}` : undefined}>{title}</h1>
+		<p><strong set:html={description} /></p>
+	</div>
+	{logo && (
+		<div class="hero-logo">
+			<img src={logo.src} alt={logoAlt} width="150" height="150" />
+		</div>
+	)}
 </section>
 
 <style>
-	#hero {
+	.hero {
 		padding-bottom: 1rem;
-		padding-top: 2rem;
+		padding-top: 1rem;
+	}
+	
+	.hero--with-logo {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+		padding: 1rem 0;
+	}
+	
+	.hero-content {
+		flex: 1;
+	}
+	
+	.hero-content h1 {
+		margin-top: 0;
+		margin-bottom: 0.5rem;
+	}
+	
+	.hero-content p {
+		font-size: 1rem;
+		margin: 0;
+		color: rgb(var(--text-color));
+		opacity: 0.9;
+	}
+	
+	.hero-logo {
+		flex-shrink: 0;
+		margin-top: 1.625rem;
+	}
+	
+	.hero-logo img {
+		display: block;
+		width: 80px;
+		height: 80px;
+	}
+	
+	@media (min-width: 769px) {
+		.hero {
+			padding-top: 2rem;
+		}
+		
+		.hero--with-logo {
+			gap: 3rem;
+			margin-bottom: 3rem;
+			padding: 2rem 0;
+		}
+		
+		.hero-content p {
+			font-size: 1.125rem;
+		}
+		
+		.hero-logo img {
+			width: 150px;
+			height: 150px;
+		}
 	}
 </style>

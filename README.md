@@ -1,5 +1,7 @@
 # Chad Collins - Personal Blog
 
+Can be viewed live here: **[chadcollins.dev](https://chadcollins.dev)**
+
 Hey, I'm Chad. I'm a dad, software developer, tinkerer, reader, and sometimes Pokémon trainer. In 2025 I decided to officially ditch social media and avoid shorts, reels, TikToks, and basically anything designed to melt your attention span. Instead of doom scrolling, I've been spending more time on hobbies, picking up new ones, and doing things that feel a little more meaningful. This blog is my way of thinking out loud, tracking what I'm into, and experimenting with ideas.
 
 I'm an Ohio guy, born in a rural town, dragged to Columbus by a relationship and a job, then eventually pulled back to the sticks by family. Still trying to recover from the whiplash.

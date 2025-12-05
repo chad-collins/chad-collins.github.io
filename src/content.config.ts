@@ -23,9 +23,7 @@ const posts = defineCollection({
 			type: z.enum(['blog', 'review']).default('blog'),
 			// Review-specific fields (only used when type is 'review')
 			rating: z.number().min(0).max(5).step(0.5).optional(),
-			artist: z.string().optional(), // For albums
-			author: z.string().optional(), // For books
-			director: z.string().optional(), // For movies
+			creator: z.string().optional(), // Artist, author, director, etc.
 			releaseYear: z.number().optional(),
 		}),
 });

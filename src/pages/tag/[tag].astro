@@ -43,9 +43,7 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
 							href={`/posts/${item.id}`}
 							tags={item.data.tags}
 							rating={item.data.rating}
-							artist={item.data.artist}
-							author={item.data.author}
-							director={item.data.director}
+							creator={item.data.creator}
 							releaseYear={item.data.releaseYear}
 						/>
 					</li>

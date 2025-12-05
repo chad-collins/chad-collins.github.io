@@ -2,34 +2,70 @@
 interface Props {
 	class?: string;
 	grid?: boolean;
+	title?: string;
+	viewAllHref?: string;
+	viewAllText?: string;
 }
 
-const { class: className, grid = false } = Astro.props;
+const {
+	class: className,
+	grid = false,
+	title,
+	viewAllHref,
+	viewAllText = "View all →",
+} = Astro.props;
 ---
 
-<ul class:list={['list', { 'list--grid': grid }, className]}>
-	<slot />
-</ul>
-
+	{
+		title && (
+			<div class="list-header">
+				<h2>{title}</h2>
+				{viewAllHref && <a href={viewAllHref}>{viewAllText}</a>}
+			</div>
+		)
+	}
+	<ul class:list={["list", { "list--grid": grid }, className]}>
+		<slot />
+	</ul>
 <style is:global>
+	.list-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
+
+	.list-header h2 {
+		margin: 0;
+		padding-bottom: 0.75rem;
+	}
+
+	.list-header a {
+		font-size: 0.875rem;
+	}
+
 	.list {
 		list-style: none;
 		padding: 0;
+		padding-bottom: 1.5rem;
 		margin: 0;
 	}
-	
-	
+
 	.list--grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 1.5rem;
 		max-width: 100%;
 	}
-	
+
+	.list--grid + .list-header {
+		margin-bottom: 1.5rem;
+	}
+
 	.list--grid .list__item {
 		min-width: 0;
 	}
-	
+
 	@media (max-width: 768px) {
 		.list--grid {
 			grid-template-columns: 1fr;
