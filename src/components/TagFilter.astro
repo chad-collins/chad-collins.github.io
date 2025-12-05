@@ -10,7 +10,7 @@ const { tags, excludeTag } = Astro.props;
 const filterableTags = excludeTag ? tags.filter(tag => tag !== excludeTag) : tags;
 ---
 
-<aside class="tag-filter" aria-label="Browse by tag">
+<div class="tag-filter" aria-label="Browse by all tags">
 	<h3 class="tag-filter__label">Browse by tag</h3>
 	<nav class="tag-filter__buttons">
 		{filterableTags.map((tag) => (
@@ -22,7 +22,7 @@ const filterableTags = excludeTag ? tags.filter(tag => tag !== excludeTag) : tag
 			</a>
 		))}
 	</nav>
-</aside>
+</div>
 
 <style>
 	.tag-filter {
@@ -59,10 +59,10 @@ const filterableTags = excludeTag ? tags.filter(tag => tag !== excludeTag) : tag
 	}
 	
 	/* Mobile: horizontal layout */
-	@media (max-width: 768px) {
+	@media (width <= 768px) {
 		.tag-filter {
 			position: static;
-			margin: 0 0 1.85rem 0;
+			margin: 0 0 1.85rem;
 			padding: 1rem 0;
 			width: 100%;
 		}
@@ -74,7 +74,6 @@ const filterableTags = excludeTag ? tags.filter(tag => tag !== excludeTag) : tag
 			padding: 0;
 			margin: 0 0.5rem 0 0;
 			overflow: visible;
-			clip: auto;
 			white-space: normal;
 			font-size: 0.75em;
 			color: rgb(var(--gray));
@@ -84,8 +83,7 @@ const filterableTags = excludeTag ? tags.filter(tag => tag !== excludeTag) : tag
 		
 		.tag-filter__buttons {
 			display: inline-flex;
-			flex-direction: row;
-			flex-wrap: wrap;
+			flex-flow: row wrap;
 			gap: 0.75rem;
 			align-items: center;
 		}

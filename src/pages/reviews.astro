@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
+import PageHeader from "../components/PageHeader.astro";
 import PostsListItem from "../components/PostsListItem.astro";
 import PostsList from "../components/PostsList.astro";
 import TagFilter from "../components/TagFilter.astro";
@@ -23,8 +23,8 @@ const years = Object.keys(reviewsByYear).sort((a, b) => Number(b) - Number(a));
 ---
 
 <BaseLayout title="Reviews" description="My reviews of books, movies, albums, and more">
-	<Hero
-		slot="hero"
+	<PageHeader
+		slot="pageHeader"
 		title="Reflections"
 		description=`These posts were originally called <i>Reviews</i>", which carried some... baggage. At best it implies that I'm an authority <i>(I'm not)</i>, or at worst, that I'm writing these for the sake of content creation 🤮. These entries are really just a way for me to form solid opinions and <i>reflect</i> on the things that I spend time with. 🫶`
 	/>

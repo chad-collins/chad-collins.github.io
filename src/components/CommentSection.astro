@@ -15,7 +15,7 @@ import { REPO } from "../consts";
     script.setAttribute('label', 'comments');
     
     // Set theme based on current color scheme
-    const isDark = document.documentElement.classList.contains('dark');
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     script.setAttribute('theme', isDark ? 'dark-blue' : 'github-light');
     
     script.setAttribute('crossorigin', 'anonymous');
@@ -35,7 +35,7 @@ import { REPO } from "../consts";
   const observer = new MutationObserver(() => {
     const iframe = document.querySelector('.utterances-frame');
     if (iframe) {
-      const isDark = document.documentElement.classList.contains('dark');
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       const message = {
         type: 'set-theme',
         theme: isDark ? 'github-dark' : 'github-light'
@@ -46,7 +46,7 @@ import { REPO } from "../consts";
   
   observer.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ['class']
+    attributeFilter: ['data-theme']
   });
 </script>
 
@@ -57,7 +57,7 @@ import { REPO } from "../consts";
     padding: 0 24px 60px;
   }
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     #giscus-comments {
       padding: 0 20px 40px;
       margin-top: 40px;

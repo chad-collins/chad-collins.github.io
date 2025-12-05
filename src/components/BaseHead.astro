@@ -23,10 +23,10 @@ const { title, description } = Astro.props;
 			const storageTheme = localStorage.getItem('theme');
 			
 			if (storageTheme === 'light') {
-				document.documentElement.classList.remove('dark');
+				document.documentElement.removeAttribute('data-theme');
 			} else {
 				// Default to dark mode
-				document.documentElement.classList.add('dark');
+				document.documentElement.setAttribute('data-theme', 'dark');
 			}
 		}
 	};

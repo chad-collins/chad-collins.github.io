@@ -12,8 +12,8 @@ const posts = defineCollection({
 			// Transform string to Date object
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
-			heroImage: image().optional(),
-			reviewImage: image().optional(), // For review cover art/posters
+			headerImage: image().optional(),
+			coverImage: image().optional(), // For review cover art/posters
 			// Post settings
 			published: z.boolean().default(false),
 			comments: z.boolean().default(true),

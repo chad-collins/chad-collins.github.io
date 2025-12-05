@@ -40,13 +40,13 @@ const { name, coverImage, date, description, href } = Astro.props;
 		border-radius: 8px;
 		overflow: hidden;
 		background: rgb(var(--card-bg));
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
 		transition: transform 0.2s, box-shadow 0.2s;
 	}
 	
 	.album-card:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+		box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
 	}
 	
 	.album-cover img {
@@ -60,7 +60,7 @@ const { name, coverImage, date, description, href } = Astro.props;
 	}
 	
 	.album-info h3 {
-		margin: 0 0 0.5rem 0;
+		margin: 0 0 0.5rem;
 		font-size: 1.1rem;
 		font-weight: 600;
 	}
@@ -68,7 +68,7 @@ const { name, coverImage, date, description, href } = Astro.props;
 	.album-info time {
 		display: block;
 		font-size: 0.9rem;
-		color: rgb(var(--text-muted);
+		color: rgb(var(--text-muted));
 		margin-bottom: 0.5rem;
 	}
 	

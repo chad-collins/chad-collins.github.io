@@ -11,13 +11,13 @@ type Props = {
 	pubDate: Date;
 	tags?: string[];
 	type?: CollectionEntry<"posts">["data"]["type"];
-	reviewImage?: ImageMetadata;
+	coverImage?: ImageMetadata;
 	rating?: number;
 	creator?: string;
 	releaseYear?: number;
 };
 
-const { title, pubDate, tags, type, reviewImage, rating, creator, releaseYear } = Astro.props;
+const { title, pubDate, tags, type, coverImage, rating, creator, releaseYear } = Astro.props;
 ---
 
 <header>
@@ -34,9 +34,9 @@ const { title, pubDate, tags, type, reviewImage, rating, creator, releaseYear } 
 		</ul>
 	)}
 	
-	{type === "review" && reviewImage && (
+	{type === "review" && coverImage && (
 		<div class="review-meta">
-			<Image src={reviewImage} alt={title} width={120} class="review-image" />
+			<Image src={coverImage} alt={title} width={120} class="review-image" />
 			<div class="review-info">
 				{creator && <p class="creator">{creator}</p>}
 				{releaseYear && <p class="release-year">{releaseYear}</p>}
@@ -68,7 +68,7 @@ const { title, pubDate, tags, type, reviewImage, rating, creator, releaseYear } 
 		gap: 0.5rem;
 		list-style: none;
 		padding: 0;
-		margin: 0 0 1.5rem 0;
+		margin: 0 0 1.5rem;
 	}
 
 	.review-meta {
@@ -102,7 +102,7 @@ const { title, pubDate, tags, type, reviewImage, rating, creator, releaseYear } 
 		font-size: 1.25rem;
 	}
 
-	@media (max-width: 600px) {
+	@media (width <= 600px) {
 		.review-meta {
 			grid-template-columns: 1fr;
 		}

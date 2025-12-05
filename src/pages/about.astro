@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
+import PageHeader from "../components/PageHeader.astro";
 import { SITE_TITLE } from "../consts";
 ---
 
 <BaseLayout title={`About | ${SITE_TITLE}`} description="A little bit about me">
-	<Hero slot="hero" title="About Me" description="" />
+	<PageHeader slot="pageHeader" title="About Me" description="" />
 
 	<div class="content">
 		<article class="prose">

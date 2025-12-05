@@ -18,7 +18,7 @@ const {
 	comments, 
 	breadcrumbs,
 	type,
-	reviewImage,
+	coverImage,
 	rating,
 	creator,
 	releaseYear
@@ -34,7 +34,7 @@ const {
 			pubDate={pubDate} 
 			tags={tags}
 			type={type}
-			reviewImage={reviewImage}
+			coverImage={coverImage}
 			rating={rating}
 			creator={creator}
 			releaseYear={releaseYear}
@@ -55,6 +55,7 @@ const {
     flex-basis: auto;
     
 }
+
 .tags * {
     list-style: none; 
 }
@@ -195,7 +196,7 @@ const {
 .prose code {
     font-family: ui-monospace, SFMono-Regular, Monaco, 'Cascadia Code', 'Roboto Mono', Menlo, Consolas, monospace;
     font-size: 0.875em;
-    background-color: rgba(var(--gray), 0.1);
+    background-color: rgb(var(--gray), 0.1);
     padding: 0.2em 0.4em;
     border-radius: 3px;
 }
@@ -204,8 +205,8 @@ const {
     font-family: ui-monospace, SFMono-Regular, Monaco, 'Cascadia Code', 'Roboto Mono', Menlo, Consolas, monospace;
     font-size: 0.875em;
     line-height: 1.6;
-    background-color: rgba(var(--gray), 0.05);
-    border: 1px solid rgba(var(--gray), 0.2);
+    background-color: rgb(var(--gray), 0.05);
+    border: 1px solid rgb(var(--gray), 0.2);
     border-radius: 6px;
     padding: 1em;
     margin: 1.5em 0;
@@ -222,7 +223,7 @@ const {
 /* Horizontal Rule */
 .prose hr {
     border: none;
-    border-top: 1px solid rgba(var(--gray), 0.2);
+    border-top: 1px solid rgb(var(--gray), 0.2);
     margin: 2.5em 0;
 }
 
@@ -246,12 +247,12 @@ const {
 .prose td {
     padding: 0.75em 1em;
     text-align: left;
-    border-bottom: 1px solid rgba(var(--gray), 0.2);
+    border-bottom: 1px solid rgb(var(--gray), 0.2);
 }
 
 .prose th {
     font-weight: 600;
-    background-color: rgba(var(--gray), 0.05);
+    background-color: rgb(var(--gray), 0.05);
 }
 
 /* First element spacing */

@@ -11,28 +11,28 @@ interface Props {
 }
 
 const { title, description, colorTag, logo, logoAlt = 'Logo' } = Astro.props;
-const titleColor = colorTag ? getTagColor(colorTag, false) : null;
+const titleColor = colorTag ? getTagColor(colorTag, 'light') : null;
 ---
 
-<section id="hero" class:list={['hero', { 'hero--with-logo': logo }]}>
-	<div class="hero-content">
-		<h1 style={titleColor ? `color: ${titleColor}` : undefined}>{title}</h1>
-		<p><strong set:html={description} /></p>
+<header class:list={['page-header', { 'page-header--with-logo': logo }]}>
+	<div class="page-header__content">
+		<h1 class="page-header__title" style={titleColor ? `color: ${titleColor}` : undefined}>{title}</h1>
+		<p class="page-header__description"><strong set:html={description} /></p>
 	</div>
 	{logo && (
-		<div class="hero-logo">
+		<div class="page-header__logo">
 			<img src={logo.src} alt={logoAlt} width="150" height="150" />
 		</div>
 	)}
-</section>
+</header>
 
 <style>
-	.hero {
+	.page-header {
 		padding-bottom: 1rem;
 		padding-top: 1rem;
 	}
 	
-	.hero--with-logo {
+	.page-header--with-logo {
 		display: flex;
 		flex-direction: row;
 		align-items: flex-start;
@@ -41,49 +41,49 @@ const titleColor = colorTag ? getTagColor(colorTag, false) : null;
 		padding: 1rem 0;
 	}
 	
-	.hero-content {
+	.page-header__content {
 		flex: 1;
 	}
 	
-	.hero-content h1 {
+	.page-header__title {
 		margin-top: 0;
 		margin-bottom: 0.5rem;
 	}
 	
-	.hero-content p {
+	.page-header__description {
 		font-size: 1rem;
 		margin: 0;
 		color: rgb(var(--text-color));
 		opacity: 0.9;
 	}
 	
-	.hero-logo {
+	.page-header__logo {
 		flex-shrink: 0;
 		margin-top: 1.625rem;
 	}
 	
-	.hero-logo img {
+	.page-header__logo img {
 		display: block;
 		width: 80px;
 		height: 80px;
 	}
 	
-	@media (min-width: 769px) {
-		.hero {
+	@media (width >= 769px) {
+		.page-header {
 			padding-top: 2rem;
 		}
 		
-		.hero--with-logo {
+		.page-header--with-logo {
 			gap: 3rem;
 			margin-bottom: 3rem;
 			padding: 2rem 0;
 		}
 		
-		.hero-content p {
+		.page-header__description {
 			font-size: 1.125rem;
 		}
 		
-		.hero-logo img {
+		.page-header__logo img {
 			width: 150px;
 			height: 150px;
 		}

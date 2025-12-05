@@ -13,13 +13,12 @@ const today = new Date();
 		background: rgb(var(--bg-color));
 		margin-top: 120px;
 		transition: background-color 0.3s ease, border-color 0.3s ease;
+		width: 100%;
 	}
 	
 	.footer-content {
-		max-width: 1200px;
-		margin: 0 auto;
 		padding: 40px 24px;
-		text-align: center;
+		text-align: left;
 	}
 	
 	p {
@@ -28,7 +27,7 @@ const today = new Date();
 		color: rgb(var(--gray));
 	}
 	
-	@media (max-width: 768px) {
+	@media (width <= 768px) {
 		footer {
 			margin-top: 80px;
 		}

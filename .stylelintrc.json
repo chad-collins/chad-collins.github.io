@@ -10,6 +10,8 @@
         "ignorePseudoClasses": ["global"]
       }
     ],
-    "no-descending-specificity": null
+    "selector-class-pattern": null,
+    "no-descending-specificity": null,
+    "property-no-vendor-prefix": null
   }
 }

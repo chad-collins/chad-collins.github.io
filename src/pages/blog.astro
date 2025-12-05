@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
+import PageHeader from "../components/PageHeader.astro";
 import PostsListItem from "../components/PostsListItem.astro";
 import PostsList from "../components/PostsList.astro";
 import TagFilter from "../components/TagFilter.astro";
@@ -11,8 +11,8 @@ const allTags = await getAllTags();
 ---
 
 <BaseLayout title="Blog" description="All blog posts">
-	<Hero
-		slot="hero"
+	<PageHeader
+		slot="pageHeader"
 		title="Blog"
 		description="Thoughts, ideas, and things I've learned."
 	/>

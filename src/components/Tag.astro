@@ -1,5 +1,5 @@
 ---
-import { getTagColor } from '../utils/tags';
+import { getTagColors } from '../utils/tags';
 
 interface Props {
 	name: string;
@@ -8,8 +8,7 @@ interface Props {
 }
 
 const { name, class: className, href } = Astro.props;
-const lightColor = getTagColor(name, false);
-const darkColor = getTagColor(name, true);
+const { light: lightColor, dark: darkColor } = getTagColors(name);
 const tagHref = typeof href === 'string' ? href : `/tag/${name}`;
 const Element = href === false ? 'span' : 'a';
 ---
@@ -26,11 +25,10 @@ const Element = href === false ? 'span' : 'a';
 <style>
   .tag {
     display: inline-block;
-    font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
-    color: rgb(var(--tag-light));
+    color: var(--tag-light);
     transition: all 0.2s ease;
   }
   
@@ -39,6 +37,6 @@ const Element = href === false ? 'span' : 'a';
   }
   
   :global([data-theme='dark']) .tag {
-    color: rgb(var(--tag-dark);
+    color: var(--tag-dark);
   }
 </style>

@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AlbumCard from '../components/AlbumCard.astro';
-import Hero from '../components/Hero.astro';
+import PageHeader from '../components/PageHeader.astro';
 
 const albums = (await getCollection('albums'))
   .filter(album => album.data.published === true)
@@ -22,8 +22,8 @@ const categories = Object.keys(albumsByCategory).sort();
 ---
 
 <BaseLayout title="Photos" description="Photo albums and memories">
-  <Hero 
-		slot="hero"
+  <PageHeader 
+		slot="pageHeader"
     title="Photos" 
     description="Captured moments from life, travels, and adventures." 
   />

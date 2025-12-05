@@ -1,6 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { getTagColor } from "../utils/tags";
+import { getTagColors } from "../utils/tags";
 
 interface Props extends HTMLAttributes<"a"> {
 	variant?: "default" | "sidebar";
@@ -12,13 +12,14 @@ const isActive = href === pathname || href === "/" + pathname.split("/")[1];
 
 // Extract section from data-section prop if it exists
 const section = props["data-section"] as string | undefined;
-const sectionColor = section ? getTagColor(section, false) : null;
+const sectionColors = section ? getTagColors(section) : null;
+const { light: sectionLightColor, dark: sectionDarkColor } = sectionColors ?? { light: null, dark: null };
 ---
 
 <a
 	href={href}
 	class:list={[variant, isActive ? "active" : "", className]}
-	style={sectionColor ? `--section-color: ${sectionColor}` : undefined}
+	style={sectionLightColor ? `--section-light: ${sectionLightColor}; --section-dark: ${sectionDarkColor};` : undefined}
 	{...props}
 >
 	<slot />
@@ -46,12 +47,20 @@ const sectionColor = section ? getTagColor(section, false) : null;
 
 	/* Section-specific colors */
 	a.default[data-section]:hover {
-		color: rgb(var(--section-color));
+		color: var(--section-light);
 	}
 
 	a.default[data-section].active {
-		color: rgb(var(--section-color));
+		color: var(--section-light);
 		font-weight: 500;
+	}
+
+	:global([data-theme='dark']) a.default[data-section]:hover {
+		color: var(--section-dark);
+	}
+
+	:global([data-theme='dark']) a.default[data-section].active {
+		color: var(--section-dark);
 	}
 	
 	/* Sidebar variant */

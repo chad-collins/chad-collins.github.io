@@ -30,33 +30,42 @@ const { rating, lightColor = 'rgb(var(--accent))', darkColor = 'rgb(var(--accent
   align-items: center;
   gap: 8px;
 }
+
 .stars {
   display: flex;
   gap: 2px;
   font-size: 1em;
 }
+
 .star {
-  color: rgb(var(--star-light));
+  color: var(--star-light);
 }
-:global(.dark) .star {
-  color: rgb(var(--star-dark));
+
+:global([data-theme='dark']) .star {
+  color: var(--star-dark);
 }
+
 .star.half {
-  background: linear-gradient(90deg, rgb(var(--star-light) 50%, rgba(var(--gray), 0.4) 50%);
+  /* stylelint-disable-next-line color-function-alias-notation */
+  background: linear-gradient(90deg, var(--star-light) 50%, rgba(var(--gray), 0.4) 50%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-:global(.dark) .star.half {
-  background: linear-gradient(90deg, rgb(var(--star-dark) 50%, rgba(var(--gray), 0.4) 50%);
+
+:global([data-theme='dark']) .star.half {
+  /* stylelint-disable-next-line color-function-alias-notation */
+  background: linear-gradient(90deg, var(--star-dark) 50%, rgba(var(--gray), 0.4) 50%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 .star.empty {
   color: rgb(var(--gray));
   opacity: 0.4;
 }
+
 .rating-value {
   font-size: 0.9em;
   color: rgb(var(--gray));

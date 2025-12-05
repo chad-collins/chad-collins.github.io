@@ -13,7 +13,7 @@
   --link-color: 255, 111, 97;
 }
 
-:root.dark {
+:root[data-theme='dark'] {
   --accent: 255, 111, 97;
   --accent-dark: 217, 76, 61;
   --black: 230, 230, 225;

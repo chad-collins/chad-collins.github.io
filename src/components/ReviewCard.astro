@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import ReviewStars from './ReviewStars.astro';
-import { getTagColor } from '../utils/tags';
+import { getTagColors } from '../utils/tags';
 
 interface Props {
 	title: string;
-	reviewImage?: any;
+	coverImage?: any;
 	tags?: string[];
 	rating?: number;
 	creator?: string;
@@ -17,7 +17,7 @@ interface Props {
 
 const { 
 	title, 
-	reviewImage, 
+	coverImage, 
 	tags = [], 
 	rating, 	
 	creator, 
@@ -28,16 +28,16 @@ const {
 } = Astro.props;
 
 const reviewType = tags.find(tag => tag !== 'review') || tags[0];
-const tagLightColor = reviewType ? getTagColor(reviewType, false) : '';
-const tagDarkColor = reviewType ? getTagColor(reviewType, true) : '';
+const tagColors = reviewType ? getTagColors(reviewType) : null;
+const { light: tagLightColor, dark: tagDarkColor } = tagColors ?? { light: '', dark: '' };
 ---
 
 <div class={`review-card ${isSticky ? 'sticky' : ''}`} style={`--card-bg: color-mix(in srgb, ${tagLightColor} 8%, transparent); --card-bg-hover: color-mix(in srgb, ${tagLightColor} 16%, transparent); --tag-border: ${tagLightColor}; --tag-border-dark: ${tagDarkColor};`}>
-	{reviewImage && href && (
+	{coverImage && href && (
 		<a href={href} class="review-card__image-link">
 			<div class="review-card__image">
 				<Image 
-					src={reviewImage} 
+					src={coverImage} 
 					alt={`Cover art for ${title}`}
 					width={400}
 					height={200}
@@ -46,10 +46,10 @@ const tagDarkColor = reviewType ? getTagColor(reviewType, true) : '';
 			</div>
 		</a>
 	)}
-	{reviewImage && !href && (
+	{coverImage && !href && (
 		<div class="review-card__image">
 			<Image 
-				src={reviewImage} 
+				src={coverImage} 
 				alt={`Cover art for ${title}`}
 				width={400}
 				height={200}
@@ -102,7 +102,14 @@ const tagDarkColor = reviewType ? getTagColor(reviewType, true) : '';
 		color: inherit;
 		padding: 1rem;
 		margin: 0;
-		background-color: none;
+		background-color: transparent;
+		transition: background-color 0.2s ease;
+	}
+
+	@media (width >= 768px) {
+		.review-card:has(.review-card__image-link:hover, .review-card__title-link:hover) {
+			background-color: var(--card-bg-hover);
+		}
 	}
 	
 	.review-card__image-link {
@@ -126,10 +133,10 @@ const tagDarkColor = reviewType ? getTagColor(reviewType, true) : '';
 	}
 	
 	.review-card__title-link:hover .review-card__title {
-		color: rgb(var(--tag-border));
+		color: var(--tag-border);
 	}
 	
-	:global(.dark) .review-card__title-link:hover .review-card__title {
+	:global([data-theme='dark']) .review-card__title-link:hover .review-card__title {
 		color: rgb(var(--tag-border-dark));
 	}
 	
@@ -138,8 +145,8 @@ const tagDarkColor = reviewType ? getTagColor(reviewType, true) : '';
 		top: 100px;
 	}
 	
-	:global(.dark) .review-card {
-		border-color: rgb(var(--tag-border-dark);
+	:global([data-theme='dark']) .review-card {
+		border-color: rgb(var(--tag-border-dark));
 	}
 	
 	/* Image */
@@ -184,12 +191,12 @@ const tagDarkColor = reviewType ? getTagColor(reviewType, true) : '';
 		font-size: 0.6em;
 		letter-spacing: 0.06em;
 		font-weight: 500;
-		color: rgb(var(--tag-light);
+		color: var(--tag-light);
 		margin: 0 0.5rem;
 	}
 	
-	:global(.dark) .review-card__tag {
-		color: rgb(var(--tag-dark);
+	:global([data-theme='dark']) .review-card__tag {
+		color: var(--tag-dark);
 	}
 	
 	.review-card__creator {
@@ -227,12 +234,12 @@ const tagDarkColor = reviewType ? getTagColor(reviewType, true) : '';
 	
 	.review-card__separator {
 		flex: 1;
-		border-bottom: 1px solid rgb(var(--tag-light);
+		border-bottom: 1px solid var(--tag-light);
 		
 	}
 	
-	:global(.dark) .review-card__separator {
-		border-color: rgb(var(--tag-dark);
+	:global([data-theme='dark']) .review-card__separator {
+		border-color: var(--tag-dark);
 	}
 	
 

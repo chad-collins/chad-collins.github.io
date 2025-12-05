@@ -1,9 +1,0 @@
-/* Breakpoint Constants */
-/* Reference these in media queries for consistency across the site */
-/* Usage: @media (max-width: rgb(var(--breakpoint-mobile)) { ... } */
-
-:root {
-	--breakpoint-mobile: 968px;
-	--breakpoint-tablet: 768px
-	--breakpoint-desktop: 1025px;
-}
