@@ -3,10 +3,9 @@ backend:
   repo: chad-collins/chad-collins.github.io
   branch: main
   auth_type: implicit
-  client_id: Ov23liftlPlZ01mVTYmz 
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
-  
+  client_id: Ov23liftlPlZ01mVTYmz
+
+
 media_folder: "src/assets/blog"
 public_folder: "../../assets/blog"
 
